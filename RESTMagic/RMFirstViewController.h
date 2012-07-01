@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMFirstViewController : UIViewController
+@interface RMFirstViewController : UIViewController {
+    
+    
+    __unsafe_unretained IBOutlet UIWebView *mustacheTestWebView;
+    
+    
+    
+}
+@property (unsafe_unretained, nonatomic) IBOutlet UIWebView *mustacheTestWebView;
 
 @end
