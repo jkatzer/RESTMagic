@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F091159FF7EE0079D9B2 /* UIKit.framework */; };
+		9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F093159FF7EE0079D9B2 /* Foundation.framework */; };
+		9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */; };
+		9697F09C159FF7EE0079D9B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */; };
+		9697F09E159FF7EE0079D9B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697F09D159FF7EE0079D9B2 /* main.m */; };
+		9697F0A2159FF7EE0079D9B2 /* RMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697F0A1159FF7EE0079D9B2 /* RMAppDelegate.m */; };
+		9697F0A5159FF7EE0079D9B2 /* RMFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697F0A4159FF7EE0079D9B2 /* RMFirstViewController.m */; };
+		9697F0A7159FF7EE0079D9B2 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0A6159FF7EE0079D9B2 /* first.png */; };
+		9697F0A9159FF7EE0079D9B2 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0A8159FF7EE0079D9B2 /* first@2x.png */; };
+		9697F0AC159FF7EE0079D9B2 /* RMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697F0AB159FF7EE0079D9B2 /* RMSecondViewController.m */; };
+		9697F0AE159FF7EE0079D9B2 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0AD159FF7EE0079D9B2 /* second.png */; };
+		9697F0B0159FF7EE0079D9B2 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0AF159FF7EE0079D9B2 /* second@2x.png */; };
+		9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */; };
+		9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9697F08D159FF7EE0079D9B2 /* RESTMagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESTMagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9697F091159FF7EE0079D9B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9697F093159FF7EE0079D9B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */ = {isa = PBXFileReference; path = "RESTMagic-Info.plist"; sourceTree = "<group>"; };
+		9697F09B159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9697F09D159FF7EE0079D9B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */ = {isa = PBXFileReference; path = "RESTMagic-Prefix.pch"; sourceTree = "<group>"; };
+		9697F0A0159FF7EE0079D9B2 /* RMAppDelegate.h */ = {isa = PBXFileReference; path = RMAppDelegate.h; sourceTree = "<group>"; };
+		9697F0A1159FF7EE0079D9B2 /* RMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAppDelegate.m; sourceTree = "<group>"; };
+		9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */ = {isa = PBXFileReference; path = RMFirstViewController.h; sourceTree = "<group>"; };
+		9697F0A4159FF7EE0079D9B2 /* RMFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMFirstViewController.m; sourceTree = "<group>"; };
+		9697F0A6159FF7EE0079D9B2 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		9697F0A8159FF7EE0079D9B2 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		9697F0AA159FF7EE0079D9B2 /* RMSecondViewController.h */ = {isa = PBXFileReference; path = RMSecondViewController.h; sourceTree = "<group>"; };
+		9697F0AB159FF7EE0079D9B2 /* RMSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMSecondViewController.m; sourceTree = "<group>"; };
+		9697F0AD159FF7EE0079D9B2 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		9697F0AF159FF7EE0079D9B2 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		9697F0B2159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RMFirstViewController.xib; sourceTree = "<group>"; };
+		9697F0B5159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RMSecondViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9697F08A159FF7ED0079D9B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */,
+				9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */,
+				9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9697F082159FF7ED0079D9B2 = {
+			isa = PBXGroup;
+			children = (
+				9697F097159FF7EE0079D9B2 /* RESTMagic */,
+				9697F090159FF7EE0079D9B2 /* Frameworks */,
+				9697F08E159FF7EE0079D9B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9697F08E159FF7EE0079D9B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9697F08D159FF7EE0079D9B2 /* RESTMagic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9697F090159FF7EE0079D9B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9697F091159FF7EE0079D9B2 /* UIKit.framework */,
+				9697F093159FF7EE0079D9B2 /* Foundation.framework */,
+				9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9697F097159FF7EE0079D9B2 /* RESTMagic */ = {
+			isa = PBXGroup;
+			children = (
+				9697F0A0159FF7EE0079D9B2 /* RMAppDelegate.h */,
+				9697F0A1159FF7EE0079D9B2 /* RMAppDelegate.m */,
+				9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */,
+				9697F0A4159FF7EE0079D9B2 /* RMFirstViewController.m */,
+				9697F0A6159FF7EE0079D9B2 /* first.png */,
+				9697F0A8159FF7EE0079D9B2 /* first@2x.png */,
+				9697F0AA159FF7EE0079D9B2 /* RMSecondViewController.h */,
+				9697F0AB159FF7EE0079D9B2 /* RMSecondViewController.m */,
+				9697F0AD159FF7EE0079D9B2 /* second.png */,
+				9697F0AF159FF7EE0079D9B2 /* second@2x.png */,
+				9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */,
+				9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */,
+				9697F098159FF7EE0079D9B2 /* Supporting Files */,
+			);
+			path = RESTMagic;
+			sourceTree = "<group>";
+		};
+		9697F098159FF7EE0079D9B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */,
+				9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */,
+				9697F09D159FF7EE0079D9B2 /* main.m */,
+				9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9697F08C159FF7ED0079D9B2 /* RESTMagic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "RESTMagic" */;
+			buildPhases = (
+				9697F089159FF7ED0079D9B2 /* Sources */,
+				9697F08A159FF7ED0079D9B2 /* Frameworks */,
+				9697F08B159FF7ED0079D9B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RESTMagic;
+			productName = RESTMagic;
+			productReference = 9697F08D159FF7EE0079D9B2 /* RESTMagic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9697F084159FF7ED0079D9B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RM;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Jason Katzer";
+			};
+			buildConfigurationList = 9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "RESTMagic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9697F082159FF7ED0079D9B2;
+			productRefGroup = 9697F08E159FF7EE0079D9B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9697F08C159FF7ED0079D9B2 /* RESTMagic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9697F08B159FF7ED0079D9B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9697F09C159FF7EE0079D9B2 /* InfoPlist.strings in Resources */,
+				9697F0A7159FF7EE0079D9B2 /* first.png in Resources */,
+				9697F0A9159FF7EE0079D9B2 /* first@2x.png in Resources */,
+				9697F0AE159FF7EE0079D9B2 /* second.png in Resources */,
+				9697F0B0159FF7EE0079D9B2 /* second@2x.png in Resources */,
+				9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */,
+				9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9697F089159FF7ED0079D9B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9697F09E159FF7EE0079D9B2 /* main.m in Sources */,
+				9697F0A2159FF7EE0079D9B2 /* RMAppDelegate.m in Sources */,
+				9697F0A5159FF7EE0079D9B2 /* RMFirstViewController.m in Sources */,
+				9697F0AC159FF7EE0079D9B2 /* RMSecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9697F09B159FF7EE0079D9B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9697F0B2159FF7EE0079D9B2 /* en */,
+			);
+			name = RMFirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9697F0B5159FF7EE0079D9B2 /* en */,
+			);
+			name = RMSecondViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9697F0B7159FF7EE0079D9B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9697F0B8159FF7EE0079D9B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9697F0BA159FF7EE0079D9B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9697F0BB159FF7EE0079D9B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "RESTMagic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9697F0B7159FF7EE0079D9B2 /* Debug */,
+				9697F0B8159FF7EE0079D9B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "RESTMagic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9697F0BA159FF7EE0079D9B2 /* Debug */,
+				9697F0BB159FF7EE0079D9B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9697F084159FF7ED0079D9B2 /* Project object */;
+}
