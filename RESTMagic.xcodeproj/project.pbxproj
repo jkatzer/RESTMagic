@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		968D23CC15A110D3005091DE /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23CB15A110D3005091DE /* RMViewController.m */; };
+		968D23DB15A1132C005091DE /* RMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DA15A1132C005091DE /* RMWebView.m */; };
+		968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DE15A1146F005091DE /* RMWebViewDelegate.m */; };
 		9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F091159FF7EE0079D9B2 /* UIKit.framework */; };
 		9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F093159FF7EE0079D9B2 /* Foundation.framework */; };
 		9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */; };
@@ -21,24 +24,33 @@
 		9697F0B0159FF7EE0079D9B2 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0AF159FF7EE0079D9B2 /* second@2x.png */; };
 		9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */; };
 		9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */; };
+		9A88E88428CF4A9EBC55B042 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 900781F8F8E6410992E0121B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00931467AC454253842B59FE /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		900781F8F8E6410992E0121B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		968D23CA15A110D3005091DE /* RMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMViewController.h; sourceTree = "<group>"; };
+		968D23CB15A110D3005091DE /* RMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMViewController.m; sourceTree = "<group>"; };
+		968D23D915A1132C005091DE /* RMWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebView.h; sourceTree = "<group>"; };
+		968D23DA15A1132C005091DE /* RMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebView.m; sourceTree = "<group>"; };
+		968D23DD15A1146F005091DE /* RMWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebViewDelegate.h; sourceTree = "<group>"; };
+		968D23DE15A1146F005091DE /* RMWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebViewDelegate.m; sourceTree = "<group>"; };
 		9697F08D159FF7EE0079D9B2 /* RESTMagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESTMagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9697F091159FF7EE0079D9B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9697F093159FF7EE0079D9B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */ = {isa = PBXFileReference; path = "RESTMagic-Info.plist"; sourceTree = "<group>"; };
+		9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESTMagic-Info.plist"; sourceTree = "<group>"; };
 		9697F09B159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9697F09D159FF7EE0079D9B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */ = {isa = PBXFileReference; path = "RESTMagic-Prefix.pch"; sourceTree = "<group>"; };
-		9697F0A0159FF7EE0079D9B2 /* RMAppDelegate.h */ = {isa = PBXFileReference; path = RMAppDelegate.h; sourceTree = "<group>"; };
+		9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RESTMagic-Prefix.pch"; sourceTree = "<group>"; };
+		9697F0A0159FF7EE0079D9B2 /* RMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMAppDelegate.h; sourceTree = "<group>"; };
 		9697F0A1159FF7EE0079D9B2 /* RMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAppDelegate.m; sourceTree = "<group>"; };
-		9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */ = {isa = PBXFileReference; path = RMFirstViewController.h; sourceTree = "<group>"; };
+		9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMFirstViewController.h; sourceTree = "<group>"; };
 		9697F0A4159FF7EE0079D9B2 /* RMFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMFirstViewController.m; sourceTree = "<group>"; };
 		9697F0A6159FF7EE0079D9B2 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		9697F0A8159FF7EE0079D9B2 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		9697F0AA159FF7EE0079D9B2 /* RMSecondViewController.h */ = {isa = PBXFileReference; path = RMSecondViewController.h; sourceTree = "<group>"; };
+		9697F0AA159FF7EE0079D9B2 /* RMSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMSecondViewController.h; sourceTree = "<group>"; };
 		9697F0AB159FF7EE0079D9B2 /* RMSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMSecondViewController.m; sourceTree = "<group>"; };
 		9697F0AD159FF7EE0079D9B2 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		9697F0AF159FF7EE0079D9B2 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
@@ -54,6 +66,7 @@
 				9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */,
 				9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */,
 				9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */,
+				9A88E88428CF4A9EBC55B042 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +79,7 @@
 				9697F097159FF7EE0079D9B2 /* RESTMagic */,
 				9697F090159FF7EE0079D9B2 /* Frameworks */,
 				9697F08E159FF7EE0079D9B2 /* Products */,
+				00931467AC454253842B59FE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +97,7 @@
 				9697F091159FF7EE0079D9B2 /* UIKit.framework */,
 				9697F093159FF7EE0079D9B2 /* Foundation.framework */,
 				9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */,
+				900781F8F8E6410992E0121B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,6 +118,12 @@
 				9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */,
 				9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */,
 				9697F098159FF7EE0079D9B2 /* Supporting Files */,
+				968D23CA15A110D3005091DE /* RMViewController.h */,
+				968D23CB15A110D3005091DE /* RMViewController.m */,
+				968D23D915A1132C005091DE /* RMWebView.h */,
+				968D23DA15A1132C005091DE /* RMWebView.m */,
+				968D23DD15A1146F005091DE /* RMWebViewDelegate.h */,
+				968D23DE15A1146F005091DE /* RMWebViewDelegate.m */,
 			);
 			path = RESTMagic;
 			sourceTree = "<group>";
@@ -128,6 +149,7 @@
 				9697F089159FF7ED0079D9B2 /* Sources */,
 				9697F08A159FF7ED0079D9B2 /* Frameworks */,
 				9697F08B159FF7ED0079D9B2 /* Resources */,
+				E14C000831C946D8A2CF5482 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,6 +204,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E14C000831C946D8A2CF5482 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9697F089159FF7ED0079D9B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -191,6 +230,9 @@
 				9697F0A2159FF7EE0079D9B2 /* RMAppDelegate.m in Sources */,
 				9697F0A5159FF7EE0079D9B2 /* RMFirstViewController.m in Sources */,
 				9697F0AC159FF7EE0079D9B2 /* RMSecondViewController.m in Sources */,
+				968D23CC15A110D3005091DE /* RMViewController.m in Sources */,
+				968D23DB15A1132C005091DE /* RMWebView.m in Sources */,
+				968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,22 +313,32 @@
 		};
 		9697F0BA159FF7EE0079D9B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00931467AC454253842B59FE /* Pods.xcconfig */;
 			buildSettings = {
+				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		9697F0BB159FF7EE0079D9B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00931467AC454253842B59FE /* Pods.xcconfig */;
 			buildSettings = {
+				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -310,6 +362,7 @@
 				9697F0BB159FF7EE0079D9B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

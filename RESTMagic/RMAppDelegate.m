@@ -7,9 +7,8 @@
 //
 
 #import "RMAppDelegate.h"
-
+#import "RMViewController.h"
 #import "RMFirstViewController.h"
-
 #import "RMSecondViewController.h"
 
 @implementation RMAppDelegate
@@ -20,8 +19,11 @@
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[RMFirstViewController alloc] initWithNibName:@"RMFirstViewController" bundle:nil];
     UIViewController *viewController2 = [[RMSecondViewController alloc] initWithNibName:@"RMSecondViewController" bundle:nil];
+    
+    RMViewController *rmViewController1 = [[RMViewController alloc]initWithResourceAtUrl:@"https://api.twitter.com/1/trends/daily.json"];
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[viewController1, viewController2, rmViewController1];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
