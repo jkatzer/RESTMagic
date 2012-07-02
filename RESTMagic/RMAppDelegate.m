@@ -20,7 +20,7 @@
     UIViewController *viewController1 = [[RMFirstViewController alloc] initWithNibName:@"RMFirstViewController" bundle:nil];
     UIViewController *viewController2 = [[RMSecondViewController alloc] initWithNibName:@"RMSecondViewController" bundle:nil];
     
-    RMViewController *rmViewController1 = [[RMViewController alloc]initWithResourceAtUrl:@"https://api.twitter.com/1/trends/daily.json"];
+    RMViewController *rmViewController1 = [[RMViewController alloc]initWithResourceAtUrl:@"trends/daily.json"];
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[viewController1, viewController2, rmViewController1];

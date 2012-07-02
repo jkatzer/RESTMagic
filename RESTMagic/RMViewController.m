@@ -7,6 +7,8 @@
 //
 
 #import "RMViewController.h"
+#import "JSONKit.h"
+#import "GRMustache.h"
 
 @interface RMViewController ()
 
@@ -19,9 +21,13 @@
     
     self = [super init];
     if (self) {
+        URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1/%@",url]];
         
-        self.title = [[NSURL URLWithString:url] path];
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        //this is bad code
+        objectName = [url componentsSeparatedByString:@"/"][0];
+        self.title = objectName;
+        self.tabBarItem.image = [UIImage imageNamed:objectName];
+
     }
     return self;
     
@@ -40,7 +46,47 @@
     [rmWebView loadHTMLString:@"LOADING" baseURL:[NSURL URLWithString:@"/"]];
     
     [self.view addSubview:rmWebView];
+    
+    [self loadObject];
 }
+
+
+- (id)objectDictionary
+{    
+    if (objectDictionary) {
+        return objectDictionary;
+    } else {
+        [self loadObject];
+        return nil;
+    }
+}
+
+-(void)loadObject
+{
+    //make asynchronous
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLResponse* response = nil;
+    NSError *err = nil;
+
+    objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    objectDictionary = [objectData objectFromJSONData];
+    [self objectDidLoad];
+}
+
+-(void)objectDidLoad
+{
+    
+    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-01 04:20"];
+
+    
+    NSString *template = [NSString stringWithFormat:@"<ul>{{#%@}}<li>{{name}}</li>{{/%@}}</ul>", objectName, objectName];
+    NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];
+    
+    
+    [rmWebView loadHTMLString:rendering baseURL:[NSURL URLWithString:@"/"]];
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning

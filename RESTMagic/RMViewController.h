@@ -14,12 +14,16 @@
 @interface RMViewController : UIViewController <RMWebViewDelegate> {
     
     RMWebView *rmWebView;
+    NSDictionary *objectDictionary;
+    NSURL *URL;
+    NSData *objectData;
+    NSString *objectName;
 
-    
 }
 
 
 -(id)initWithResourceAtUrl:(NSString *)url;
-
+-(id)object;
+-(void)loadObject;
 
 @end
