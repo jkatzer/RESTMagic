@@ -69,21 +69,46 @@
     NSError *err = nil;
 
     objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    objectDictionary = [objectData objectFromJSONData];
     [self objectDidLoad];
 }
 
 -(void)objectDidLoad
 {
+    NSString *template = [NSString stringWithFormat:@"<ul>{{#%@}}<li>{{name}}</li>{{/%@}}</ul>", objectName, objectName];
+
+    [self presentTemplate:template withJSONData:objectData];
     
+}
+
+
+- (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    // Determine if we want the system to handle it.
+    NSURL *url = request.URL;
+    if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
+        if ([[UIApplication sharedApplication]canOpenURL:url]) {
+            [[UIApplication sharedApplication]openURL:url];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
+-(void)presentTemplate:(NSString *)template withJSONData:(NSData *)jsonData {
+    
+    //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
+    
+    NSDictionary* objectDictionary = [jsonData objectFromJSONData];
+
     NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-01 04:20"];
 
     
-    NSString *template = [NSString stringWithFormat:@"<ul>{{#%@}}<li>{{name}}</li>{{/%@}}</ul>", objectName, objectName];
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];
     
     
     [rmWebView loadHTMLString:rendering baseURL:[NSURL URLWithString:@"/"]];
+    
     
 }
 
