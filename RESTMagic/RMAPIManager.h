@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Jason Katzer. All rights reserved.
 //
 
-//TODO: make this a singleton
-
 #import <UIKit/UIKit.h>
 #import "RMViewController.h"
 
@@ -17,7 +15,10 @@
 }
 
 
--(id)initWithBaseURL:(NSURL *)URL;
+@property (nonatomic, retain) NSURL* baseURL;
+
+
++(RMAPIManager *)sharedAPIManager;
 -(NSString *)nameForResourceAtPath:(NSString *)path;
 -(NSURL *)URLForResourceAtPath:(NSString *)path;
 -(NSString *)urlForResourceAtPath:(NSString *)path;

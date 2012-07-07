@@ -7,19 +7,12 @@
 //
 
 #import "RMAPIManager.h"
+#import "SynthesizeSingleton.h"
 
 @implementation RMAPIManager
+SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager)
 
--(id)initWithBaseURL:(NSURL *)URL
-{
-    self = [super init];
-    if (self) {
-        baseURL = URL;
-    }
-    
-    return self;
-}
-
+@synthesize baseURL;
 
 -(NSString *)nameForResourceAtPath:(NSString *)path
 {

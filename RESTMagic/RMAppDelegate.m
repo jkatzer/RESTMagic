@@ -20,8 +20,8 @@
     UIViewController *viewController1 = [[RMFirstViewController alloc] initWithNibName:@"RMFirstViewController" bundle:nil];
     UIViewController *viewController2 = [[RMSecondViewController alloc] initWithNibName:@"RMSecondViewController" bundle:nil];
     
-    //will make this a singleton
-    RMAPIManager *apiManager = [[RMAPIManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/1/"]];
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    apiManager.baseURL = [NSURL URLWithString:@"https://api.twitter.com/1/"];
     
     
     self.tabBarController = [[UITabBarController alloc] init];
