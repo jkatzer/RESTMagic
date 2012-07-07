@@ -18,11 +18,13 @@
     
     //this is bad code
     objectName = [url componentsSeparatedByString:@"/"][0];
-
-    return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
     
-}
+    return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
 
+
+    
+
+}
 
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
 {
@@ -38,8 +40,9 @@
     self = [super init];
     if (self) {
         
-        URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1/%@",url]];
-        
+        URL = [NSURL URLWithString:url];
+        //make this another incoming param
+        objectName = title;
         self.title = title;
         self.tabBarItem.image = [UIImage imageNamed:iconName];
         
@@ -115,7 +118,7 @@
     
     NSDictionary* objectDictionary = [jsonData objectFromJSONData];
 
-    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 06:20"];
+    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 11:20"];
 
     
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];

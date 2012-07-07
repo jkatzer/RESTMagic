@@ -7,7 +7,7 @@
 //
 
 #import "RMAppDelegate.h"
-#import "RMViewController.h"
+#import "RMAPIManager.h"
 #import "RMFirstViewController.h"
 #import "RMSecondViewController.h"
 
@@ -20,10 +20,12 @@
     UIViewController *viewController1 = [[RMFirstViewController alloc] initWithNibName:@"RMFirstViewController" bundle:nil];
     UIViewController *viewController2 = [[RMSecondViewController alloc] initWithNibName:@"RMSecondViewController" bundle:nil];
     
-    RMViewController *rmViewController1 = [[RMViewController alloc]initWithResourceAtUrl:@"trends/daily.json"];
+    //will make this a singleton
+    RMAPIManager *apiManager = [[RMAPIManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/1/"]];
+    
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2, rmViewController1];
+    self.tabBarController.viewControllers = @[viewController1, viewController2, [apiManager viewControllerForResourceAtPath:@"trends/daily.json"]];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
