@@ -10,29 +10,43 @@
 #import "JSONKit.h"
 #import "GRMustache.h"
 
-@interface RMViewController ()
-
-@end
 
 @implementation RMViewController
 
 
 -(id)initWithResourceAtUrl:(NSString *)url {
     
-    self = [super init];
-    if (self) {
-        URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1/%@",url]];
-        
-        //this is bad code
-        objectName = [url componentsSeparatedByString:@"/"][0];
-        self.title = objectName;
-        self.tabBarItem.image = [UIImage imageNamed:objectName];
+    //this is bad code
+    objectName = [url componentsSeparatedByString:@"/"][0];
 
-    }
-    return self;
+    return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
     
 }
 
+
+-(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
+{
+
+    return [self initWithResourceAtUrl:url withTitle:title andIconNamed:title];
+    
+    
+}
+
+
+-(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName
+{
+    self = [super init];
+    if (self) {
+        
+        URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1/%@",url]];
+        
+        self.title = title;
+        self.tabBarItem.image = [UIImage imageNamed:iconName];
+        
+    }
+    return self;
+
+}
 
 - (void)loadView
 {
@@ -51,7 +65,7 @@
 }
 
 
-- (id)objectDictionary
+/*- (id)objectDictionary
 {    
     if (objectDictionary) {
         return objectDictionary;
@@ -59,7 +73,7 @@
         [self loadObject];
         return nil;
     }
-}
+}*/
 
 -(void)loadObject
 {
@@ -101,7 +115,7 @@
     
     NSDictionary* objectDictionary = [jsonData objectFromJSONData];
 
-    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-01 04:20"];
+    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 06:20"];
 
     
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];

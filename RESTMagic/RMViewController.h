@@ -22,7 +22,10 @@
 
 
 -(id)initWithResourceAtUrl:(NSString *)url;
--(id)object;
+-(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
+-(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
+
+//-(id)object;
 -(void)loadObject;
 
 
