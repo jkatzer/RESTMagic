@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RMWebView.h"
 #import "RMWebViewDelegate.h"
+#import "RMAPIManager.h"
 
 
 @interface RMViewController : UIViewController <RMWebViewDelegate> {

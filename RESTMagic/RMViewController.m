@@ -100,8 +100,15 @@
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
+    
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+
+    
     // Determine if we want the system to handle it.
     NSURL *url = request.URL;
+    
+    [[apiManager baseURL] ]
+    
     if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
         if ([[UIApplication sharedApplication]canOpenURL:url]) {
             [[UIApplication sharedApplication]openURL:url];
@@ -118,7 +125,7 @@
     
     NSDictionary* objectDictionary = [jsonData objectFromJSONData];
 
-    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 11:20"];
+    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 12:00"];
 
     
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];

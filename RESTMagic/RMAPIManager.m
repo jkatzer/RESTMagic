@@ -5,6 +5,11 @@
 //  Created by Jason Katzer on 7/7/12.
 //  Copyright (c) 2012 Jason Katzer. All rights reserved.
 //
+//
+// Do we want to cache all objects?
+// Ship binaries with javascript frameworks downloaded?
+// Download zipped packages with all reources, including templates?
+// or maybe without templates?
 
 #import "RMAPIManager.h"
 #import "SynthesizeSingleton.h"

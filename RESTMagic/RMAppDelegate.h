@@ -10,6 +10,11 @@
 
 @interface RMAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
+
+
+-(BOOL)canOpenURL:(NSURL *)url;
+-(void)openURL:(NSURL *)url;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;

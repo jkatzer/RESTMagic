@@ -31,6 +31,32 @@
     return YES;
 }
 
+
+-(BOOL)canOpenURL:(NSURL *)url {
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+
+    
+    if ([url host] == [apiManager.baseURL host])
+    {
+        NSRange textRange;
+        textRange = [[url path] rangeOfString:[[apiManager baseURL] path] options:NSCaseInsensitiveSearch];
+    
+        if(textRange.location != NSNotFound) {return YES;}
+    }
+    
+    return NO;
+}
+
+-(void)openURL:(NSURL *)url{
+    
+    // look for native controller
+    // make a new view controller
+    // pass it to a navigation controller?
+    
+}
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
