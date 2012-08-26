@@ -21,11 +21,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 -(NSString *)nameForResourceAtPath:(NSString *)path
 {
-    
-    
+
     return [path componentsSeparatedByString:@"/"][0];
     
 }
+
+-(NSString *)nameForResourceAtURL:(NSURL *)url
+{
+    return [url pathComponents][0];
+}
+
+
 
 -(NSURL *)URLForResourceAtPath:(NSString *)path
 {
@@ -57,5 +63,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return [[RMViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     
 }
+
+-(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url
+{
+    return [[RMViewController alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
+
+}
+
 
 @end

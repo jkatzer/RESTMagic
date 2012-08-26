@@ -24,9 +24,11 @@
 
 +(RMAPIManager *)sharedAPIManager;
 -(NSString *)nameForResourceAtPath:(NSString *)path;
+-(NSString *)nameForResourceAtURL:(NSURL *)url;
 -(NSURL *)URLForResourceAtPath:(NSString *)path;
 -(NSString *)urlForResourceAtPath:(NSString *)path;
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
+-(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url;
 
 @end

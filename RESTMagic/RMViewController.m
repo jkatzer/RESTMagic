@@ -93,7 +93,7 @@
 {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
-    NSLog([apiManager templateUrlForResourceAtUrl:URL]);
+    NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"];
     
     
@@ -109,11 +109,19 @@
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    //while developing we are just going to take over all clicks
 
-    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        
+        [(RMAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[request URL]];
+        
+        return NO;
+    }
+    return YES;
+
     // Determine if we want the system to handle it.
+   /* 
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     NSURL *url = request.URL;
     
     if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
@@ -122,7 +130,7 @@
             return NO;
         }
     }
-    return YES;
+    return YES;*/
 }
 
 
@@ -131,11 +139,26 @@
     //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
     
     NSDictionary* objectDictionary = [jsonData objectFromJSONData];
+
+    NSDictionary *dictToRender = [objectDictionary objectForKey:objectName];
     
-    NSArray *anArray = [[objectDictionary objectForKey:objectName] allValues][0];
+    NSDictionary* objectToRender;
+    
+    if (dictToRender != nil) {
+        
+        if ([dictToRender isKindOfClass:[NSDictionary class]]) {
+            NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
+            objectToRender = @{objectName: arrayToRender};
+        }
+
+    } else {
+        objectToRender  = objectDictionary;
+    }
 
     
-    NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];
+
+    
+    NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
     
     NSLog(@"%@",rendering);
     [rmWebView loadHTMLString:rendering baseURL:URL];

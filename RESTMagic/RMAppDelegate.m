@@ -20,12 +20,18 @@
     UIViewController *viewController1 = [[RMFirstViewController alloc] initWithNibName:@"RMFirstViewController" bundle:nil];
     UIViewController *viewController2 = [[RMSecondViewController alloc] initWithNibName:@"RMSecondViewController" bundle:nil];
     
+    
+    
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     apiManager.baseURL = [NSURL URLWithString:@"https://api.twitter.com/1/"];
     
     
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[apiManager viewControllerForResourceAtPath:@"trends/daily.json"]];
+
+    
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2, [apiManager viewControllerForResourceAtPath:@"trends/daily.json"]];
+    self.tabBarController.viewControllers = @[viewController1, viewController2, self.navigationController];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -35,8 +41,10 @@
 -(BOOL)canOpenURL:(NSURL *)url {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
 
-    
-    if ([url host] == [apiManager.baseURL host])
+    //during developement of this part lets just always say yes
+    return YES;
+
+    /*    if ([url host] == [apiManager.baseURL host])
     {
         NSRange textRange;
         textRange = [[url path] rangeOfString:[[apiManager baseURL] path] options:NSCaseInsensitiveSearch];
@@ -45,6 +53,7 @@
     }
     
     return NO;
+*/
 }
 
 -(void)openURL:(NSURL *)url{
@@ -52,6 +61,13 @@
     // look for native controller
     // make a new view controller
     // pass it to a navigation controller?
+    
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:url];
+    
+    [self.navigationController pushViewController:aViewController animated:YES];
+    
+    
     
 }
 
