@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9632121515E9D7A000F55E12 /* templates in Resources */ = {isa = PBXBuildFile; fileRef = 9632121415E9D7A000F55E12 /* templates */; };
 		9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9683114D15A83E9C009CBF4F /* RMAPIManager.m */; };
 		968D23CC15A110D3005091DE /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23CB15A110D3005091DE /* RMViewController.m */; };
 		968D23DB15A1132C005091DE /* RMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DA15A1132C005091DE /* RMWebView.m */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		00931467AC454253842B59FE /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		900781F8F8E6410992E0121B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9632121415E9D7A000F55E12 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
 		9683114C15A83E9C009CBF4F /* RMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAPIManager.h; sourceTree = "<group>"; };
 		9683114D15A83E9C009CBF4F /* RMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAPIManager.m; sourceTree = "<group>"; };
 		9683119A15A846B5009CBF4F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		9697F098159FF7EE0079D9B2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9632121415E9D7A000F55E12 /* templates */,
 				9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */,
 				9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */,
 				9697F09D159FF7EE0079D9B2 /* main.m */,
@@ -211,6 +214,7 @@
 				9697F0B0159FF7EE0079D9B2 /* second@2x.png in Resources */,
 				9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */,
 				9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */,
+				9632121515E9D7A000F55E12 /* templates in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

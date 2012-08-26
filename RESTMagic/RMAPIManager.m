@@ -42,6 +42,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
 }
 
+-(NSString *)templateUrlForResourceAtUrl:(NSURL *)url
+{
+    
+    return [NSString stringWithFormat:@"templates/%@%@", [url host], [url path]];
+}
+
+
+
 
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {

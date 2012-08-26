@@ -21,14 +21,14 @@
 
 }
 
-
+-(id)initWithResourceAtPath:(NSString *)path;
 -(id)initWithResourceAtUrl:(NSString *)url;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
 
 //-(id)object;
 -(void)loadObject;
-
+-(NSString *)template;
 
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
 

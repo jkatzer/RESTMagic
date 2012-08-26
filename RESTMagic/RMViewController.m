@@ -7,6 +7,7 @@
 //
 
 #import "RMViewController.h"
+#import "RMAppDelegate.h"
 #import "JSONKit.h"
 #import "GRMustache.h"
 
@@ -54,10 +55,8 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 411)];
-    
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     [rmWebView loadHTMLString:@"LOADING" baseURL:[NSURL URLWithString:@"/"]];
@@ -89,12 +88,22 @@
     [self objectDidLoad];
 }
 
+
+-(NSString *)template
+{
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    
+    NSLog([apiManager templateUrlForResourceAtUrl:URL]);
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"];
+    
+    
+    return [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
+    
+}
+
 -(void)objectDidLoad
 {
-    NSString *template = [NSString stringWithFormat:@"<ul>{{#%@}}<li>{{name}}</li>{{/%@}}</ul>", objectName, objectName];
-
-    [self presentTemplate:template withJSONData:objectData];
-    
+    [self presentTemplate:[self template] withJSONData:objectData];
 }
 
 
@@ -128,8 +137,8 @@
     
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];
     
-    
-    [rmWebView loadHTMLString:rendering baseURL:[NSURL URLWithString:@"/"]];
+    NSLog(@"%@",rendering);
+    [rmWebView loadHTMLString:rendering baseURL:URL];
     
     
 }
