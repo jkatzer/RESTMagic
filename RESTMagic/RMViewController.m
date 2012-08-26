@@ -107,8 +107,6 @@
     // Determine if we want the system to handle it.
     NSURL *url = request.URL;
     
-    [[apiManager baseURL] ]
-    
     if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
         if ([[UIApplication sharedApplication]canOpenURL:url]) {
             [[UIApplication sharedApplication]openURL:url];
@@ -124,8 +122,8 @@
     //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
     
     NSDictionary* objectDictionary = [jsonData objectFromJSONData];
-
-    NSArray *anArray = [[objectDictionary objectForKey:objectName] objectForKey:@"2012-07-06 12:00"];
+    
+    NSArray *anArray = [[objectDictionary objectForKey:objectName] allValues][0];
 
     
     NSString *rendering = [GRMustacheTemplate renderObject:@{objectName:anArray} fromString:template error:NULL];

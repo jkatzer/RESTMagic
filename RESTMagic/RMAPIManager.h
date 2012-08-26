@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RMViewController.h"
 
+@class RMViewController;
+
 @interface RMAPIManager : NSObject
 {
     NSURL* baseURL;
 }
+
+
 
 
 @property (nonatomic, retain) NSURL* baseURL;
