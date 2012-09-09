@@ -28,7 +28,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 -(NSString *)nameForResourceAtURL:(NSURL *)url
 {
-    return [url pathComponents][0];
+    return [[[[url path] componentsSeparatedByString:@"/"] lastObject] stringByReplacingOccurrencesOfString:@".json" withString:@""];
 }
 
 
@@ -60,12 +60,42 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {
     
+    NSString* resourceName = [self nameForResourceAtPath:path];
+    resourceName= [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
+
+    
+    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"RM",resourceName];
+    
+    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] init];
+    
+    if (viewController) {
+        return viewController;
+    }
+    
+    NSLog(@"trying view controller: %@",potentialViewControllerName);
+    
     return [[RMViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     
 }
 
 -(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url
 {
+ 
+    NSString* resourceName = [self nameForResourceAtURL:url];
+    resourceName= [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
+    
+    
+    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
+    
+    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
+    
+    if (viewController) {
+        return viewController;
+    }
+    
+    NSLog(@"trying view controller: %@",potentialViewControllerName);
+
+    
     return [[RMViewController alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
 
 }

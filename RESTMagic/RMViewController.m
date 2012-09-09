@@ -93,7 +93,6 @@
 {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
-    NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"];
     
     
@@ -160,7 +159,6 @@
     
     NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
     
-    NSLog(@"%@",rendering);
     [rmWebView loadHTMLString:rendering baseURL:URL];
     
     
