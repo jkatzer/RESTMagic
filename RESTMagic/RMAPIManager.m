@@ -87,11 +87,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
     NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
     
-    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
+//    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
     
-    if (viewController) {
-        return viewController;
-    }
+//    if (viewController) {
+//        return viewController;
+//    }
+    
+    
     
     NSLog(@"trying view controller: %@",potentialViewControllerName);
 

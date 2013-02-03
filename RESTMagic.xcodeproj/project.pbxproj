@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9621385B15FC6F24007230E7 /* TWSearchViewController.xib */; };
+		9621386015FC7030007230E7 /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385F15FC702F007230E7 /* RMTableViewController.m */; };
 		9632121515E9D7A000F55E12 /* templates in Resources */ = {isa = PBXBuildFile; fileRef = 9632121415E9D7A000F55E12 /* templates */; };
 		9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9683114D15A83E9C009CBF4F /* RMAPIManager.m */; };
 		968D23CC15A110D3005091DE /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23CB15A110D3005091DE /* RMViewController.m */; };
@@ -27,12 +29,19 @@
 		9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B1159FF7EE0079D9B2 /* RMFirstViewController.xib */; };
 		9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9697F0B4159FF7EE0079D9B2 /* RMSecondViewController.xib */; };
 		96CCB39015A1248D006705CD /* RMAPIMappingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CCB38F15A1248D006705CD /* RMAPIMappingManager.m */; };
+		96DF26CD160AD4E0008C8E03 /* TWSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385A15FC6F24007230E7 /* TWSearchViewController.m */; };
+		96F4A31916589A3000C260E3 /* trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F4A31816589A3000C260E3 /* trends.png */; };
 		9A88E88428CF4A9EBC55B042 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 900781F8F8E6410992E0121B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00931467AC454253842B59FE /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		900781F8F8E6410992E0121B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9621385915FC6F24007230E7 /* TWSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSearchViewController.h; sourceTree = "<group>"; };
+		9621385A15FC6F24007230E7 /* TWSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSearchViewController.m; sourceTree = "<group>"; };
+		9621385B15FC6F24007230E7 /* TWSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWSearchViewController.xib; sourceTree = "<group>"; };
+		9621385E15FC702F007230E7 /* RMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewController.h; sourceTree = "<group>"; };
+		9621385F15FC702F007230E7 /* RMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewController.m; sourceTree = "<group>"; };
 		9632121415E9D7A000F55E12 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
 		9683114C15A83E9C009CBF4F /* RMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAPIManager.h; sourceTree = "<group>"; };
 		9683114D15A83E9C009CBF4F /* RMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAPIManager.m; sourceTree = "<group>"; };
@@ -65,6 +74,7 @@
 		9697F0B5159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RMSecondViewController.xib; sourceTree = "<group>"; };
 		96CCB38E15A1248D006705CD /* RMAPIMappingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAPIMappingManager.h; sourceTree = "<group>"; };
 		96CCB38F15A1248D006705CD /* RMAPIMappingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAPIMappingManager.m; sourceTree = "<group>"; };
+		96F4A31816589A3000C260E3 /* trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trends.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +124,7 @@
 		9697F097159FF7EE0079D9B2 /* RESTMagic */ = {
 			isa = PBXGroup;
 			children = (
+				96F4A31816589A3000C260E3 /* trends.png */,
 				9697F0A0159FF7EE0079D9B2 /* RMAppDelegate.h */,
 				9697F0A1159FF7EE0079D9B2 /* RMAppDelegate.m */,
 				9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */,
@@ -137,6 +148,11 @@
 				96CCB38F15A1248D006705CD /* RMAPIMappingManager.m */,
 				9683114C15A83E9C009CBF4F /* RMAPIManager.h */,
 				9683114D15A83E9C009CBF4F /* RMAPIManager.m */,
+				9621385915FC6F24007230E7 /* TWSearchViewController.h */,
+				9621385A15FC6F24007230E7 /* TWSearchViewController.m */,
+				9621385B15FC6F24007230E7 /* TWSearchViewController.xib */,
+				9621385E15FC702F007230E7 /* RMTableViewController.h */,
+				9621385F15FC702F007230E7 /* RMTableViewController.m */,
 			);
 			path = RESTMagic;
 			sourceTree = "<group>";
@@ -215,6 +231,8 @@
 				9697F0B3159FF7EE0079D9B2 /* RMFirstViewController.xib in Resources */,
 				9697F0B6159FF7EE0079D9B2 /* RMSecondViewController.xib in Resources */,
 				9632121515E9D7A000F55E12 /* templates in Resources */,
+				9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */,
+				96F4A31916589A3000C260E3 /* trends.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DF26CD160AD4E0008C8E03 /* TWSearchViewController.m in Sources */,
 				9697F09E159FF7EE0079D9B2 /* main.m in Sources */,
 				9697F0A2159FF7EE0079D9B2 /* RMAppDelegate.m in Sources */,
 				9697F0A5159FF7EE0079D9B2 /* RMFirstViewController.m in Sources */,
@@ -251,6 +270,7 @@
 				968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */,
 				96CCB39015A1248D006705CD /* RMAPIMappingManager.m in Sources */,
 				9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */,
+				9621386015FC7030007230E7 /* RMTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
