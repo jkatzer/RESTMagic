@@ -1,5 +1,1 @@
-<ul>
-{{# results}}
-<li>{{ text }}</li>
-{{/ results}}
-</ul>
+<ul>{{#results}}<li><a href="http://api.twitter.com/1/users/show.json?user_id={{from_user_id}}"><strong>{{from_user}}</strong></a><a href="http://api.twitter.com/1/statuses/show/{{id}}.json">{{text}}</a></li>{{/results}}</ul>

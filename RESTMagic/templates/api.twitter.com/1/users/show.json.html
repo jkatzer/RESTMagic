@@ -1,4 +1,6 @@
 <ul>
     <li>{{ name }}</li>
     <li>{{ screen_name }}</li>
+    <li><img src="{{ profile_image_url }}" /></li>
+    <li><a href="https://api.twitter.com/1/statuses/user_timeline.json?screen_name={{ screen_name }}" >all of their tweets</a></li>
 </ul>

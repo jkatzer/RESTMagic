@@ -1,0 +1,6 @@
+xcuserdata
+*.swp
+.DS_Store
+*.pyc
+Pods
+podfile.lock
