@@ -50,6 +50,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url
 {
+    //check for parts of the path that are actually unique identifiers
+
+    NSString *lastPartOfPath = [[url pathComponents] lastObject];
+
+    NSString *potentialId = [[lastPartOfPath componentsSeparatedByString:@"."] objectAtIndex:0];
+            
+    if ([potentialId intValue] != 0) {
+        NSMutableArray *restOfPath = [NSMutableArray arrayWithArray:[[url path]componentsSeparatedByString:@"/"]];
+        [restOfPath removeLastObject];
+        
+        NSString *pathBeforeId = [restOfPath componentsJoinedByString:@"/"];
+        
+        NSString *pathAfterId = [[lastPartOfPath componentsSeparatedByString:@"."] lastObject];
+        return [NSString stringWithFormat:@"templates/%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
+    }
+    
     
     return [NSString stringWithFormat:@"templates/%@%@", [url host], [url path]];
 }

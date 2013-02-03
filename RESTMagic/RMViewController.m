@@ -95,7 +95,7 @@
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"];
     
-    
+    NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
     return [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
     
 }
@@ -137,21 +137,43 @@
     
     //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
     
-    NSDictionary* objectDictionary = [jsonData objectFromJSONData];
+    //handle a couple different cases automagically
+    // 1. result is a dictionary named for the object
+    // 2. result is an array with one item, a dictionary in it
+    // 3. result is an array but not mapped in a dictionary of results
+    // if it is none of these just pass the json right to the template
+    
+    
+    id object = [jsonData objectFromJSONData];
+    id objectToRender = object;
 
-    NSDictionary *dictToRender = [objectDictionary objectForKey:objectName];
-    
-    NSDictionary* objectToRender;
-    
-    if (dictToRender != nil) {
-        
-        if ([dictToRender isKindOfClass:[NSDictionary class]]) {
-            NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
-            objectToRender = @{objectName: arrayToRender};
+
+    if ([(NSDictionary *)object respondsToSelector:@selector(objectForKey:)]) {
+        //handle case #1
+        NSDictionary *dictToRender = [object objectForKey:objectName];
+        if (dictToRender != nil) {
+            if ([dictToRender isKindOfClass:[NSDictionary class]]) {
+                NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
+                objectToRender = @{objectName: arrayToRender};
+                
+            }
         }
-
-    } else {
-        objectToRender  = objectDictionary;
+    
+    }
+    
+    
+    
+     else {
+         //handle case #2
+        if ([object isKindOfClass:[NSArray class]]) {
+            if ([(NSArray *) object count] == 0) {
+                objectToRender = [(NSArray *)object objectAtIndex:0];
+            } else {
+                //handle case #3
+                objectToRender = [NSDictionary dictionaryWithObject:object forKey:@"results"];
+            }
+        }
+        
     }
 
     
