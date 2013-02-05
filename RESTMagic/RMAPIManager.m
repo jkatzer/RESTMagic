@@ -80,15 +80,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     resourceName= [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
     
     
-    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"RM",resourceName];
+    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
     
-    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] init];
+    NSLog(@"trying view controller: %@",potentialViewControllerName);
+    
+    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     
     if (viewController) {
         return viewController;
     }
     
-    NSLog(@"trying view controller: %@",potentialViewControllerName);
     
     return [[RMViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     
@@ -103,16 +104,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
     NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
     
-    //    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
-    
-    //    if (viewController) {
-    //        return viewController;
-    //    }
-    
-    
-    
     NSLog(@"trying view controller: %@",potentialViewControllerName);
     
+    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
+    
+    if (viewController) {
+        return viewController;
+    }
     
     return [[RMViewController alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
     

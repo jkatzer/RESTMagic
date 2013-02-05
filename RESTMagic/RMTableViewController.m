@@ -39,7 +39,7 @@
 
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName
 {
-    self = [super initWithNibName:@"RMTableViewController" bundle:nil];
+    self = [super init];
     if (self) {
         
         URL = [NSURL URLWithString:url];

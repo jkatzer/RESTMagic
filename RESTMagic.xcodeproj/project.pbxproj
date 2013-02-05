@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9619D17016C0B9200056B942 /* TWTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619D16E16C0B9200056B942 /* TWTrendsViewController.m */; };
+		9619D17116C0B9200056B942 /* TWTrendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */; };
 		9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9621385B15FC6F24007230E7 /* TWSearchViewController.xib */; };
 		9621386015FC7030007230E7 /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385F15FC702F007230E7 /* RMTableViewController.m */; };
 		9632121515E9D7A000F55E12 /* templates in Resources */ = {isa = PBXBuildFile; fileRef = 9632121415E9D7A000F55E12 /* templates */; };
@@ -36,6 +38,9 @@
 /* Begin PBXFileReference section */
 		00931467AC454253842B59FE /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		900781F8F8E6410992E0121B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9619D16D16C0B9200056B942 /* TWTrendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTrendsViewController.h; sourceTree = "<group>"; };
+		9619D16E16C0B9200056B942 /* TWTrendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTrendsViewController.m; sourceTree = "<group>"; };
+		9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWTrendsViewController.xib; sourceTree = "<group>"; };
 		9621385915FC6F24007230E7 /* TWSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSearchViewController.h; sourceTree = "<group>"; };
 		9621385A15FC6F24007230E7 /* TWSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSearchViewController.m; sourceTree = "<group>"; };
 		9621385B15FC6F24007230E7 /* TWSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWSearchViewController.xib; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 				9621385B15FC6F24007230E7 /* TWSearchViewController.xib */,
 				9621385E15FC702F007230E7 /* RMTableViewController.h */,
 				9621385F15FC702F007230E7 /* RMTableViewController.m */,
+				9619D16D16C0B9200056B942 /* TWTrendsViewController.h */,
+				9619D16E16C0B9200056B942 /* TWTrendsViewController.m */,
+				9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */,
 			);
 			path = RESTMagic;
 			sourceTree = "<group>";
@@ -228,6 +236,7 @@
 				9632121515E9D7A000F55E12 /* templates in Resources */,
 				9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */,
 				96F4A31916589A3000C260E3 /* trends.png in Resources */,
+				9619D17116C0B9200056B942 /* TWTrendsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +274,7 @@
 				968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */,
 				9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */,
 				9621386015FC7030007230E7 /* RMTableViewController.m in Sources */,
+				9619D17016C0B9200056B942 /* TWTrendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

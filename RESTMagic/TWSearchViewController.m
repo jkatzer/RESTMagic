@@ -43,19 +43,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *CellIdentifier = @"UITableViewCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    static NSString *CellIdentifier = @"Cell";
     
-    UITextField *whatever = [[UITextField alloc] initWithFrame:CGRectMake(15, 15, 290, 70)];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
     NSDictionary *object = objectArray[[indexPath row]];
-    
-    whatever.text = [object objectForKey:@"text"];
-    
-    [cell addSubview:whatever];
+    cell.textLabel.text = [object objectForKey:@"text"];
     
     return cell;
 }
