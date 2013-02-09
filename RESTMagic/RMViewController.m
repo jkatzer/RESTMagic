@@ -7,7 +7,6 @@
 //
 
 #import "RMViewController.h"
-#import "TWAppDelegate.h"
 #import "JSONKit.h"
 #import "GRMustache.h"
 
@@ -91,9 +90,8 @@
     //take over all clicks and send them to the appdelegate to decide what to do with them.
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        
-        [(TWAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[request URL]];
-        
+        RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+        [apiManager openURL:request.URL withNavigationController:self.navigationController];
         return NO;
     }
     

@@ -27,5 +27,7 @@
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
 -(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url;
+-(BOOL)canOpenURL:(NSURL *)url;
+-(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController;
 
 @end

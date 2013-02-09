@@ -103,6 +103,8 @@
 		963978AA16C628E2007442FA /* ExampleCode */ = {
 			isa = PBXGroup;
 			children = (
+				9697F0A0159FF7EE0079D9B2 /* TWAppDelegate.h */,
+				9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */,
 				963978AD16C663A6007442FA /* RESTMagic.plist */,
 				9621385915FC6F24007230E7 /* TWSearchViewController.h */,
 				9621385A15FC6F24007230E7 /* TWSearchViewController.m */,
@@ -147,8 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				963978AA16C628E2007442FA /* ExampleCode */,
-				9697F0A0159FF7EE0079D9B2 /* TWAppDelegate.h */,
-				9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */,
 				9697F0A3159FF7EE0079D9B2 /* RMFirstViewController.h */,
 				9697F0A4159FF7EE0079D9B2 /* RMFirstViewController.m */,
 				9697F0A6159FF7EE0079D9B2 /* first.png */,

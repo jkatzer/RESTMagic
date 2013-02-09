@@ -101,4 +101,37 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return [self viewControllerForResourceAtPath:[url absoluteString]];
 }
 
+
+-(BOOL)canOpenURL:(NSURL *)url {
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    
+    if ([[url host] isEqualToString:[apiManager.baseURL host]] || [[url host] isEqualToString:@"search.twitter.com"])
+    {
+        return YES;
+    }
+    
+    return NO;
+    
+}
+
+-(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController{
+    
+    // look for native controller
+    // make a new view controller
+    // pass it to a navigation controller?
+    
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    
+    if ([self canOpenURL:URL]) {
+        RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:URL];
+        
+        [navigationController pushViewController:aViewController animated:YES];
+    } else {
+        [[UIApplication sharedApplication] openURL:URL];
+    }
+    
+    
+}
+
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "RMTableViewController.h"
-#import "TWAppDelegate.h"
 #import "JSONKit.h"
 
 @interface RMTableViewController ()
@@ -144,7 +143,7 @@
     
     NSString * url = [self tableView:tableView urlForRowAtIndexPath:indexPath];
     if ([url length] != 0) {
-        [(TWAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[NSURL URLWithString:url]];
+        [apiManager openURL:[NSURL URLWithString:url] withNavigationController:self.navigationController];
     }
     
 }
