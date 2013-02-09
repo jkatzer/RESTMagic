@@ -12,6 +12,7 @@
 		9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9621385B15FC6F24007230E7 /* TWSearchViewController.xib */; };
 		9621386015FC7030007230E7 /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385F15FC702F007230E7 /* RMTableViewController.m */; };
 		9632121515E9D7A000F55E12 /* templates in Resources */ = {isa = PBXBuildFile; fileRef = 9632121415E9D7A000F55E12 /* templates */; };
+		963978A916C62514007442FA /* RMTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 963978A816C62514007442FA /* RMTableViewController.xib */; };
 		9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9683114D15A83E9C009CBF4F /* RMAPIManager.m */; };
 		968D23CC15A110D3005091DE /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23CB15A110D3005091DE /* RMViewController.m */; };
 		968D23DB15A1132C005091DE /* RMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DA15A1132C005091DE /* RMWebView.m */; };
@@ -47,6 +48,7 @@
 		9621385E15FC702F007230E7 /* RMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewController.h; sourceTree = "<group>"; };
 		9621385F15FC702F007230E7 /* RMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewController.m; sourceTree = "<group>"; };
 		9632121415E9D7A000F55E12 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
+		963978A816C62514007442FA /* RMTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMTableViewController.xib; sourceTree = "<group>"; };
 		9683114C15A83E9C009CBF4F /* RMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAPIManager.h; sourceTree = "<group>"; };
 		9683114D15A83E9C009CBF4F /* RMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAPIManager.m; sourceTree = "<group>"; };
 		9683119A15A846B5009CBF4F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				968D23CA15A110D3005091DE /* RMViewController.h */,
 				968D23CB15A110D3005091DE /* RMViewController.m */,
 				968D23D915A1132C005091DE /* RMWebView.h */,
+				963978A816C62514007442FA /* RMTableViewController.xib */,
 				968D23DA15A1132C005091DE /* RMWebView.m */,
 				968D23DD15A1146F005091DE /* RMWebViewDelegate.h */,
 				968D23DE15A1146F005091DE /* RMWebViewDelegate.m */,
@@ -237,6 +240,7 @@
 				9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */,
 				96F4A31916589A3000C260E3 /* trends.png in Resources */,
 				9619D17116C0B9200056B942 /* TWTrendsViewController.xib in Resources */,
+				963978A916C62514007442FA /* RMTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
