@@ -46,7 +46,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     if ([objectDict objectForKey:@"trends"]) {
         return 1;
@@ -56,7 +55,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if ([objectDict objectForKey:@"trends"]) {
         return [[objectDict objectForKey:@"trends"] count];
@@ -81,15 +79,11 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView urlForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
-    
-    NSString *url = [[NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@",[[objectDict objectForKey:@"trends"][[indexPath row]] objectForKey:@"query"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"url is %@", url);
-    
-    
-    [(RMAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[NSURL URLWithString:url]];
+    return [[NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@",[[objectDict objectForKey:@"trends"][[indexPath row]] objectForKey:@"query"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];    
 }
+
+
 
 @end

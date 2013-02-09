@@ -59,17 +59,9 @@
 
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView urlForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
-
-    NSString *url = [NSString stringWithFormat:@"http://api.twitter.com/1/users/show.json?user_id=%@",[objectArray[[indexPath row]] objectForKey:@"from_user_id"]];
-    
-    
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:[apiManager viewControllerForResourceAtURL:[NSURL URLWithString:url]] animated:YES];
-     
+    return [NSString stringWithFormat:@"http://api.twitter.com/1/users/show.json?user_id=%@",[objectArray[[indexPath row]] objectForKey:@"from_user_id"]];
 }
 
 @end

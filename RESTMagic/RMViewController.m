@@ -11,28 +11,18 @@
 #import "JSONKit.h"
 #import "GRMustache.h"
 
-
 @implementation RMViewController
 
-
 -(id)initWithResourceAtUrl:(NSString *)url {
-    
     //this is bad code
     objectName = [url componentsSeparatedByString:@"/"][0];
     
     return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
-
-
-    
-
 }
 
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
 {
-
     return [self initWithResourceAtUrl:url withTitle:title andIconNamed:title];
-    
-    
 }
 
 
@@ -121,7 +111,6 @@
     // 3. result is an array but not mapped in a dictionary of results
     // if it is none of these just pass the json right to the template
     
-    
     id object = [jsonData objectFromJSONData];
     id objectToRender = object;
 
@@ -136,10 +125,7 @@
                 
             }
         }
-    
     }
-    
-    
     
      else {
          //handle case #2
@@ -151,17 +137,11 @@
                 objectToRender = [NSDictionary dictionaryWithObject:object forKey:@"results"];
             }
         }
-        
     }
 
-    
-
-    
     NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
     
     [rmWebView loadHTMLString:rendering baseURL:URL];
-    
-    
 }
 
 

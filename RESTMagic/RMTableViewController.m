@@ -203,13 +203,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    
+    NSString * url = [self tableView:tableView urlForRowAtIndexPath:indexPath];
+    if ([url length] != 0) {
+        [(RMAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[NSURL URLWithString:url]];
+    }
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView urlForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return @"";
+    
 }
 
 @end

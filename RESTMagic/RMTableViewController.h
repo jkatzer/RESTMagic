@@ -10,6 +10,7 @@
 #import "RMWebView.h"
 #import "RMWebViewDelegate.h"
 #import "RMAPIManager.h"
+#import "RMAppDelegate.h"
 
 @interface RMTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     
@@ -26,6 +27,9 @@
 -(id)initWithResourceAtUrl:(NSString *)url;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
+
+- (NSString *)tableView:(UITableView *)tableView urlForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 
 //-(id)object;
 -(void)loadObject;
