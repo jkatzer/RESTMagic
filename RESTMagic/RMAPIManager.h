@@ -14,6 +14,7 @@
 @interface RMAPIManager : NSObject
 {
     NSURL* baseURL;
+    NSDictionary* settings;
 }
 
 @property (nonatomic, retain) NSURL* baseURL;

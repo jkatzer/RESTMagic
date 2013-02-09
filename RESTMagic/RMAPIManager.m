@@ -19,11 +19,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 @synthesize baseURL;
 
+
+-(id)init
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RESTMagic" ofType:@"plist"];
+    settings = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    
+    if ([settings objectForKey:@"BaseURL"]) {
+        baseURL = [NSURL URLWithString:[settings objectForKey:@"BaseURL"]];
+    }
+    return self;
+}
+
 -(NSString *)nameForResourceAtPath:(NSString *)path
 {
-    
     return [path componentsSeparatedByString:@"/"][0];
-    
 }
 
 -(NSString *)nameForResourceAtURL:(NSURL *)url
@@ -31,21 +41,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return [[[[url path] componentsSeparatedByString:@"/"] lastObject] stringByReplacingOccurrencesOfString:@".json" withString:@""];
 }
 
-
-
 -(NSURL *)URLForResourceAtPath:(NSString *)path
 {
-    
     return [NSURL URLWithString:path relativeToURL:baseURL];
-    
 }
 
 
 -(NSString *)urlForResourceAtPath:(NSString *)path
 {
-    
     return [[self URLForResourceAtPath:path] absoluteString];
-    
 }
 
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url
@@ -66,55 +70,35 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         return [NSString stringWithFormat:@"templates/%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
     }
     
-    
     return [NSString stringWithFormat:@"templates/%@%@", [url host], [url path]];
 }
 
 
+-(NSString *) potentialViewControllerNameForResourceNamed:(NSString *)resourceName
+{
+    return [NSString stringWithFormat:@"%@%@ViewController",[settings objectForKey:@"ProjectClassPrefix"],resourceName];
+}
 
+-(NSString *) resourceNameForResourceAtPath:(NSString *)path
+{
+    NSString* resourceName = [self nameForResourceAtPath:path];
+    return [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
+}
 
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {
-    
-    NSString* resourceName = [self nameForResourceAtPath:path];
-    resourceName= [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
-    
-    
-    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
-    
-    NSLog(@"trying view controller: %@",potentialViewControllerName);
-    
-    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     
     if (viewController) {
         return viewController;
     }
-    
-    
+
     return [[RMViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
-    
 }
 
 -(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url
 {
-    
-    NSString* resourceName = [self nameForResourceAtURL:url];
-    resourceName= [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
-    
-    
-    NSString *potentialViewControllerName = [NSString stringWithFormat:@"%@%@ViewController",@"TW",resourceName];
-    
-    NSLog(@"trying view controller: %@",potentialViewControllerName);
-    
-    id viewController = [[NSClassFromString(potentialViewControllerName) alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
-    
-    if (viewController) {
-        return viewController;
-    }
-    
-    return [[RMViewController alloc] initWithResourceAtUrl:[url absoluteString] withTitle:[self nameForResourceAtURL:url]];
-    
+    return [self viewControllerForResourceAtPath:[url absoluteString]];
 }
-
 
 @end

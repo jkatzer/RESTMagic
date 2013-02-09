@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Jason Katzer. All rights reserved.
 //
 
-#import "RMAppDelegate.h"
+#import "TWAppDelegate.h"
 #import "RMAPIManager.h"
 #import "RMFirstViewController.h"
 #import "RMSecondViewController.h"
 
-@implementation RMAppDelegate
+@implementation TWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,9 +22,7 @@
     
     
     
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
-    apiManager.baseURL = [NSURL URLWithString:@"https://api.twitter.com/1/"];
-    
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];    
     
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:[apiManager viewControllerForResourceAtPath:@"trends/daily.json"]];
 

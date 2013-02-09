@@ -7,7 +7,7 @@
 //
 
 #import "RMViewController.h"
-#import "RMAppDelegate.h"
+#import "TWAppDelegate.h"
 #import "JSONKit.h"
 #import "GRMustache.h"
 
@@ -92,7 +92,7 @@
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         
-        [(RMAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[request URL]];
+        [(TWAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[request URL]];
         
         return NO;
     }

@@ -7,7 +7,7 @@
 //
 
 #import "TWTrendsViewController.h"
-#import "RMAppDelegate.h"
+#import "TWAppDelegate.h"
 
 @interface TWTrendsViewController ()
 
