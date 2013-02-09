@@ -67,16 +67,6 @@
 }
 
 
-/*- (id)objectDictionary
-{    
-    if (objectDictionary) {
-        return objectDictionary;
-    } else {
-        [self loadObject];
-        return nil;
-    }
-}*/
-
 -(void)loadObject
 {
     //make asynchronous
@@ -108,7 +98,7 @@
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    //while developing we are just going to take over all clicks
+    //take over all clicks and send them to the appdelegate to decide what to do with them.
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         
@@ -116,20 +106,8 @@
         
         return NO;
     }
-    return YES;
-
-    // Determine if we want the system to handle it.
-   /* 
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
-    NSURL *url = request.URL;
     
-    if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
-        if ([[UIApplication sharedApplication]canOpenURL:url]) {
-            [[UIApplication sharedApplication]openURL:url];
-            return NO;
-        }
-    }
-    return YES;*/
+    return YES;
 }
 
 

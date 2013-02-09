@@ -41,32 +41,30 @@
 -(BOOL)canOpenURL:(NSURL *)url {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
 
-    //during developement of this part lets just always say yes
-    return YES;
-
-    /*    if ([url host] == [apiManager.baseURL host])
-    {
-        NSRange textRange;
-        textRange = [[url path] rangeOfString:[[apiManager baseURL] path] options:NSCaseInsensitiveSearch];
-    
-        if(textRange.location != NSNotFound) {return YES;}
-    }
+   if ([[url host] isEqualToString:[apiManager.baseURL host]] || [[url host] isEqualToString:@"search.twitter.com"])
+   {
+        return YES;
+   }
     
     return NO;
-*/
+
 }
 
--(void)openURL:(NSURL *)url{
+-(void)openURL:(NSURL *)URL{
     
     // look for native controller
     // make a new view controller
     // pass it to a navigation controller?
     
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
-    RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:url];
     
-    [self.navigationController pushViewController:aViewController animated:YES];
-    
+    if ([self canOpenURL:URL]) {
+        RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:URL];
+
+        [self.navigationController pushViewController:aViewController animated:YES];
+    } else {
+        [[UIApplication sharedApplication] openURL:URL];
+    }
     
     
 }
