@@ -7,6 +7,7 @@
 //
 
 #import "TWTrendsViewController.h"
+#import "RMAppDelegate.h"
 
 @interface TWTrendsViewController ()
 
@@ -88,8 +89,7 @@
     NSLog(@"url is %@", url);
     
     
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:[apiManager viewControllerForResourceAtURL:[NSURL URLWithString:url]] animated:YES];
+    [(RMAppDelegate *)[[UIApplication sharedApplication] delegate] openURL:[NSURL URLWithString:url]];
 }
 
 @end
