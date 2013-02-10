@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = "http://www.RESTMagic.org"
 
   s.author       = { "jason" => "json@katzr.com" }
-  s.source       = { :git => "https://github.com/RESTmagic/RESTMagic.git" }
+  s.source       = { :git => "https://github.com/RESTmagic/RESTMagic.git", :tag => '0.0.1' }
 
   s.platform     = :ios, '5.0'
 
