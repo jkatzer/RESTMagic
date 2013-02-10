@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jason Katzer. All rights reserved.
 //
 
-#import "RMTableViewController.h"
+#import <RESTMagic/RESTMagic.h>
 
 @interface TWTrendsViewController : RMTableViewController
 

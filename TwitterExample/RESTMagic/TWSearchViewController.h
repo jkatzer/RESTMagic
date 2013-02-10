@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMTableViewController.h"
+#import <RESTMagic/RESTMagic.h>
 
 @interface TWSearchViewController : RMTableViewController <UITableViewDelegate, UITableViewDataSource>
 

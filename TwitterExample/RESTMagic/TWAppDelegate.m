@@ -7,7 +7,7 @@
 //
 
 #import "TWAppDelegate.h"
-#import "RMAPIManager.h"
+#import <RESTMagic/RESTMagic.h>
 
 @implementation TWAppDelegate
 

@@ -10,7 +10,6 @@
 #import "RMWebView.h"
 #import "RMWebViewDelegate.h"
 #import "RMAPIManager.h"
-#import "TWAppDelegate.h"
 
 @interface RMTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     

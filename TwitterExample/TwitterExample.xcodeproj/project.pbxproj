@@ -10,15 +10,8 @@
 		9619D17016C0B9200056B942 /* TWTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619D16E16C0B9200056B942 /* TWTrendsViewController.m */; };
 		9619D17116C0B9200056B942 /* TWTrendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */; };
 		9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9621385B15FC6F24007230E7 /* TWSearchViewController.xib */; };
-		9621386015FC7030007230E7 /* RMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385F15FC702F007230E7 /* RMTableViewController.m */; };
 		9632121515E9D7A000F55E12 /* templates in Resources */ = {isa = PBXBuildFile; fileRef = 9632121415E9D7A000F55E12 /* templates */; };
-		963978A916C62514007442FA /* RMTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 963978A816C62514007442FA /* RMTableViewController.xib */; };
-		963978AC16C62927007442FA /* RESTMagic.plist.sample in Resources */ = {isa = PBXBuildFile; fileRef = 963978AB16C62926007442FA /* RESTMagic.plist.sample */; };
 		963978AE16C663A6007442FA /* RESTMagic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 963978AD16C663A6007442FA /* RESTMagic.plist */; };
-		9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9683114D15A83E9C009CBF4F /* RMAPIManager.m */; };
-		968D23CC15A110D3005091DE /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23CB15A110D3005091DE /* RMViewController.m */; };
-		968D23DB15A1132C005091DE /* RMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DA15A1132C005091DE /* RMWebView.m */; };
-		968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D23DE15A1146F005091DE /* RMWebViewDelegate.m */; };
 		9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F091159FF7EE0079D9B2 /* UIKit.framework */; };
 		9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F093159FF7EE0079D9B2 /* Foundation.framework */; };
 		9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */; };
@@ -27,7 +20,7 @@
 		9697F0A2159FF7EE0079D9B2 /* TWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */; };
 		96DF26CD160AD4E0008C8E03 /* TWSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9621385A15FC6F24007230E7 /* TWSearchViewController.m */; };
 		96F4A31916589A3000C260E3 /* trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F4A31816589A3000C260E3 /* trends.png */; };
-		9A88E88428CF4A9EBC55B042 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 900781F8F8E6410992E0121B /* libPods.a */; };
+		96FC9E4616C77890004D1D8A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 900781F8F8E6410992E0121B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,21 +32,8 @@
 		9621385915FC6F24007230E7 /* TWSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSearchViewController.h; sourceTree = "<group>"; };
 		9621385A15FC6F24007230E7 /* TWSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSearchViewController.m; sourceTree = "<group>"; };
 		9621385B15FC6F24007230E7 /* TWSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWSearchViewController.xib; sourceTree = "<group>"; };
-		9621385E15FC702F007230E7 /* RMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTableViewController.h; sourceTree = "<group>"; };
-		9621385F15FC702F007230E7 /* RMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableViewController.m; sourceTree = "<group>"; };
 		9632121415E9D7A000F55E12 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
-		963978A816C62514007442FA /* RMTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMTableViewController.xib; sourceTree = "<group>"; };
-		963978AB16C62926007442FA /* RESTMagic.plist.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RESTMagic.plist.sample; sourceTree = "<group>"; };
 		963978AD16C663A6007442FA /* RESTMagic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RESTMagic.plist; sourceTree = "<group>"; };
-		9683114C15A83E9C009CBF4F /* RMAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAPIManager.h; sourceTree = "<group>"; };
-		9683114D15A83E9C009CBF4F /* RMAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAPIManager.m; sourceTree = "<group>"; };
-		9683119A15A846B5009CBF4F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		968D23CA15A110D3005091DE /* RMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMViewController.h; sourceTree = "<group>"; };
-		968D23CB15A110D3005091DE /* RMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMViewController.m; sourceTree = "<group>"; };
-		968D23D915A1132C005091DE /* RMWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebView.h; sourceTree = "<group>"; };
-		968D23DA15A1132C005091DE /* RMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebView.m; sourceTree = "<group>"; };
-		968D23DD15A1146F005091DE /* RMWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebViewDelegate.h; sourceTree = "<group>"; };
-		968D23DE15A1146F005091DE /* RMWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebViewDelegate.m; sourceTree = "<group>"; };
 		9697F08D159FF7EE0079D9B2 /* TwitterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9697F091159FF7EE0079D9B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9697F093159FF7EE0079D9B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,34 +54,18 @@
 			files = (
 				9697F092159FF7EE0079D9B2 /* UIKit.framework in Frameworks */,
 				9697F094159FF7EE0079D9B2 /* Foundation.framework in Frameworks */,
+				96FC9E4616C77890004D1D8A /* libPods.a in Frameworks */,
 				9697F096159FF7EE0079D9B2 /* CoreGraphics.framework in Frameworks */,
-				9A88E88428CF4A9EBC55B042 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		963978AA16C628E2007442FA /* ExampleCode */ = {
-			isa = PBXGroup;
-			children = (
-				9697F0A0159FF7EE0079D9B2 /* TWAppDelegate.h */,
-				9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */,
-				963978AD16C663A6007442FA /* RESTMagic.plist */,
-				9621385915FC6F24007230E7 /* TWSearchViewController.h */,
-				9621385A15FC6F24007230E7 /* TWSearchViewController.m */,
-				9621385B15FC6F24007230E7 /* TWSearchViewController.xib */,
-				9619D16D16C0B9200056B942 /* TWTrendsViewController.h */,
-				9619D16E16C0B9200056B942 /* TWTrendsViewController.m */,
-				9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */,
-			);
-			name = ExampleCode;
-			sourceTree = "<group>";
-		};
 		9697F082159FF7ED0079D9B2 = {
 			isa = PBXGroup;
 			children = (
-				9697F097159FF7EE0079D9B2 /* RESTMagic */,
+				9697F097159FF7EE0079D9B2 /* TwitterExample */,
 				9697F090159FF7EE0079D9B2 /* Frameworks */,
 				9697F08E159FF7EE0079D9B2 /* Products */,
 				00931467AC454253842B59FE /* Pods.xcconfig */,
@@ -127,23 +91,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9697F097159FF7EE0079D9B2 /* RESTMagic */ = {
+		9697F097159FF7EE0079D9B2 /* TwitterExample */ = {
 			isa = PBXGroup;
 			children = (
-				963978AA16C628E2007442FA /* ExampleCode */,
+				9697F0A0159FF7EE0079D9B2 /* TWAppDelegate.h */,
+				9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */,
+				963978AD16C663A6007442FA /* RESTMagic.plist */,
+				9621385915FC6F24007230E7 /* TWSearchViewController.h */,
+				9621385A15FC6F24007230E7 /* TWSearchViewController.m */,
+				9621385B15FC6F24007230E7 /* TWSearchViewController.xib */,
+				9619D16D16C0B9200056B942 /* TWTrendsViewController.h */,
+				9619D16E16C0B9200056B942 /* TWTrendsViewController.m */,
+				9619D16F16C0B9200056B942 /* TWTrendsViewController.xib */,
 				9697F098159FF7EE0079D9B2 /* Supporting Files */,
-				968D23CA15A110D3005091DE /* RMViewController.h */,
-				968D23CB15A110D3005091DE /* RMViewController.m */,
-				968D23D915A1132C005091DE /* RMWebView.h */,
-				963978A816C62514007442FA /* RMTableViewController.xib */,
-				968D23DA15A1132C005091DE /* RMWebView.m */,
-				968D23DD15A1146F005091DE /* RMWebViewDelegate.h */,
-				968D23DE15A1146F005091DE /* RMWebViewDelegate.m */,
-				9683114C15A83E9C009CBF4F /* RMAPIManager.h */,
-				9683114D15A83E9C009CBF4F /* RMAPIManager.m */,
-				9621385E15FC702F007230E7 /* RMTableViewController.h */,
-				9621385F15FC702F007230E7 /* RMTableViewController.m */,
 			);
+			name = TwitterExample;
 			path = RESTMagic;
 			sourceTree = "<group>";
 		};
@@ -156,8 +118,6 @@
 				9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */,
 				9697F09D159FF7EE0079D9B2 /* main.m */,
 				9697F09F159FF7EE0079D9B2 /* TwitterExample-Prefix.pch */,
-				9683119A15A846B5009CBF4F /* SynthesizeSingleton.h */,
-				963978AB16C62926007442FA /* RESTMagic.plist.sample */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -189,7 +149,7 @@
 		9697F084159FF7ED0079D9B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = RM;
+				CLASSPREFIX = TW;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Jason Katzer";
 			};
@@ -220,8 +180,6 @@
 				9621385D15FC6F24007230E7 /* TWSearchViewController.xib in Resources */,
 				96F4A31916589A3000C260E3 /* trends.png in Resources */,
 				9619D17116C0B9200056B942 /* TWTrendsViewController.xib in Resources */,
-				963978A916C62514007442FA /* RMTableViewController.xib in Resources */,
-				963978AC16C62927007442FA /* RESTMagic.plist.sample in Resources */,
 				963978AE16C663A6007442FA /* RESTMagic.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,11 +211,6 @@
 				96DF26CD160AD4E0008C8E03 /* TWSearchViewController.m in Sources */,
 				9697F09E159FF7EE0079D9B2 /* main.m in Sources */,
 				9697F0A2159FF7EE0079D9B2 /* TWAppDelegate.m in Sources */,
-				968D23CC15A110D3005091DE /* RMViewController.m in Sources */,
-				968D23DB15A1132C005091DE /* RMWebView.m in Sources */,
-				968D23DF15A1146F005091DE /* RMWebViewDelegate.m in Sources */,
-				9683114E15A83E9C009CBF4F /* RMAPIManager.m in Sources */,
-				9621386015FC7030007230E7 /* RMTableViewController.m in Sources */,
 				9619D17016C0B9200056B942 /* TWTrendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,11 +279,21 @@
 			baseConfigurationReference = 00931467AC454253842B59FE /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/xcodeproj.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = TwitterExample;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
@@ -342,11 +305,21 @@
 			baseConfigurationReference = 00931467AC454253842B59FE /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/xcodeproj.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RESTMagic-fljyvnlnrqpziufkftzxbzfyamqi/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = TwitterExample;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
