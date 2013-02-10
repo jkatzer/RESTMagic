@@ -54,14 +54,14 @@
 		968D23DA15A1132C005091DE /* RMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebView.m; sourceTree = "<group>"; };
 		968D23DD15A1146F005091DE /* RMWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWebViewDelegate.h; sourceTree = "<group>"; };
 		968D23DE15A1146F005091DE /* RMWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWebViewDelegate.m; sourceTree = "<group>"; };
-		9697F08D159FF7EE0079D9B2 /* RESTMagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESTMagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9697F08D159FF7EE0079D9B2 /* TwitterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9697F091159FF7EE0079D9B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9697F093159FF7EE0079D9B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9697F095159FF7EE0079D9B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESTMagic-Info.plist"; sourceTree = "<group>"; };
+		9697F099159FF7EE0079D9B2 /* TwitterExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwitterExample-Info.plist"; sourceTree = "<group>"; };
 		9697F09B159FF7EE0079D9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9697F09D159FF7EE0079D9B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RESTMagic-Prefix.pch"; sourceTree = "<group>"; };
+		9697F09F159FF7EE0079D9B2 /* TwitterExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TwitterExample-Prefix.pch"; sourceTree = "<group>"; };
 		9697F0A0159FF7EE0079D9B2 /* TWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWAppDelegate.h; sourceTree = "<group>"; };
 		9697F0A1159FF7EE0079D9B2 /* TWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWAppDelegate.m; sourceTree = "<group>"; };
 		96F4A31816589A3000C260E3 /* trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trends.png; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		9697F08E159FF7EE0079D9B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9697F08D159FF7EE0079D9B2 /* RESTMagic.app */,
+				9697F08D159FF7EE0079D9B2 /* TwitterExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,10 +152,10 @@
 			children = (
 				96F4A31816589A3000C260E3 /* trends.png */,
 				9632121415E9D7A000F55E12 /* templates */,
-				9697F099159FF7EE0079D9B2 /* RESTMagic-Info.plist */,
+				9697F099159FF7EE0079D9B2 /* TwitterExample-Info.plist */,
 				9697F09A159FF7EE0079D9B2 /* InfoPlist.strings */,
 				9697F09D159FF7EE0079D9B2 /* main.m */,
-				9697F09F159FF7EE0079D9B2 /* RESTMagic-Prefix.pch */,
+				9697F09F159FF7EE0079D9B2 /* TwitterExample-Prefix.pch */,
 				9683119A15A846B5009CBF4F /* SynthesizeSingleton.h */,
 				963978AB16C62926007442FA /* RESTMagic.plist.sample */,
 			);
@@ -165,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9697F08C159FF7ED0079D9B2 /* RESTMagic */ = {
+		9697F08C159FF7ED0079D9B2 /* TwitterExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "RESTMagic" */;
+			buildConfigurationList = 9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "TwitterExample" */;
 			buildPhases = (
 				9697F089159FF7ED0079D9B2 /* Sources */,
 				9697F08A159FF7ED0079D9B2 /* Frameworks */,
@@ -178,9 +178,9 @@
 			);
 			dependencies = (
 			);
-			name = RESTMagic;
+			name = TwitterExample;
 			productName = RESTMagic;
-			productReference = 9697F08D159FF7EE0079D9B2 /* RESTMagic.app */;
+			productReference = 9697F08D159FF7EE0079D9B2 /* TwitterExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -193,7 +193,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Jason Katzer";
 			};
-			buildConfigurationList = 9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "RESTMagic" */;
+			buildConfigurationList = 9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "TwitterExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -205,7 +205,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9697F08C159FF7ED0079D9B2 /* RESTMagic */,
+				9697F08C159FF7ED0079D9B2 /* TwitterExample */,
 			);
 		};
 /* End PBXProject section */
@@ -327,11 +327,11 @@
 			buildSettings = {
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TwitterExample;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -343,11 +343,11 @@
 			buildSettings = {
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESTMagic/RESTMagic-Prefix.pch";
+				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "RESTMagic/RESTMagic-Info.plist";
+				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TwitterExample;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -356,7 +356,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "RESTMagic" */ = {
+		9697F087159FF7ED0079D9B2 /* Build configuration list for PBXProject "TwitterExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9697F0B7159FF7EE0079D9B2 /* Debug */,
@@ -365,7 +365,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "RESTMagic" */ = {
+		9697F0B9159FF7EE0079D9B2 /* Build configuration list for PBXNativeTarget "TwitterExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9697F0BA159FF7EE0079D9B2 /* Debug */,

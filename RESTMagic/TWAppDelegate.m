@@ -20,7 +20,7 @@
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:[apiManager viewControllerForResourceAtPath:@"trends/daily.json"]];
 
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[self.navigationController];
+    self.tabBarController.viewControllers = @[self.navigationController, [apiManager viewControllerForResourceAtPath:@"users/show.json?user_id=2886871"]];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
