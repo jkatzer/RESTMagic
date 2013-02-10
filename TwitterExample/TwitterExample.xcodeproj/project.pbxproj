@@ -106,7 +106,7 @@
 				9697F098159FF7EE0079D9B2 /* Supporting Files */,
 			);
 			name = TwitterExample;
-			path = RESTMagic;
+			path = TwitterExample;
 			sourceTree = "<group>";
 		};
 		9697F098159FF7EE0079D9B2 /* Supporting Files */ = {
@@ -139,7 +139,7 @@
 			dependencies = (
 			);
 			name = TwitterExample;
-			productName = RESTMagic;
+			productName = TwitterExample;
 			productReference = 9697F08D159FF7EE0079D9B2 /* TwitterExample.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -286,9 +286,9 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "TwitterExample/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
+				INFOPLIST_FILE = "TwitterExample/TwitterExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -312,9 +312,9 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESTMagic/TwitterExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "TwitterExample/TwitterExample-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "RESTMagic/TwitterExample-Info.plist";
+				INFOPLIST_FILE = "TwitterExample/TwitterExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
