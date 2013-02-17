@@ -7,6 +7,11 @@ Example App
 -----
 Working on the docs but there is an example app that hooks up to the twitter api. Try extening it by adding more html templates to the templates directory
 
+1. cd TwitterExample
+1. pod install
+1. open TwitterExample.xcworkspace
+1. Build and Run!
+
 
 Usage
 -----
