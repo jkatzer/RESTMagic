@@ -7,7 +7,6 @@
 //
 
 #import "RMViewController.h"
-#import "JSONKit.h"
 #import "GRMustache.h"
 
 @implementation RMViewController
@@ -117,8 +116,7 @@
     // 2. result is an array with one item, a dictionary in it
     // 3. result is an array but not mapped in a dictionary of results
     // if it is none of these just pass the json right to the template
-    
-    id object = [jsonData objectFromJSONData];
+    id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
     id objectToRender = object;
 
 

@@ -28,6 +28,7 @@
 
 //-(id)object;
 -(void)loadObject;
+-(void)objectDidLoad;
 -(NSString *)template;
 
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;

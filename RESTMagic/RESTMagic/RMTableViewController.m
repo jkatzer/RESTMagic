@@ -7,7 +7,6 @@
 //
 
 #import "RMTableViewController.h"
-#import "JSONKit.h"
 
 @interface RMTableViewController ()
 
@@ -70,7 +69,7 @@
 
 -(void)objectDidLoad
 {
-    objectDict = [objectData objectFromJSONData];
+    objectDict = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
     
     NSDictionary *dictToRender = [objectDict objectForKey:objectName];
     
