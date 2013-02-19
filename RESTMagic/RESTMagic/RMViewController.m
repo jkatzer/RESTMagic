@@ -44,16 +44,17 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 411)];
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
+    rmWebView.scalesPageToFit=YES;
     [rmWebView loadHTMLString:@"LOADING" baseURL:[NSURL URLWithString:@"/"]];
     
     [self.view addSubview:rmWebView];
     
     [self loadObject];
 }
+
 
 
 -(void)loadObject
@@ -137,9 +138,13 @@
         }
     }
 
-    NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
-    
-    [rmWebView loadHTMLString:rendering baseURL:URL];
+    if (objectToRender) {
+        NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
+        
+        [rmWebView loadHTMLString:rendering baseURL:URL];
+    } else {
+        [rmWebView loadHTMLString:template baseURL:URL];
+    }
 }
 
 

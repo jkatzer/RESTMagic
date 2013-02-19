@@ -67,7 +67,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         NSString *pathBeforeId = [restOfPath componentsJoinedByString:@"/"];
         
         NSString *pathAfterId = [[lastPartOfPath componentsSeparatedByString:@"."] lastObject];
-        return [NSString stringWithFormat:@"templates/%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
+        if ([lastPartOfPath length] > 1) {
+            return [NSString stringWithFormat:@"templates/%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
+        } else {
+            return [NSString stringWithFormat:@"templates/%@%@/id", [url host], pathBeforeId];
+        }
     }
     
     return [NSString stringWithFormat:@"templates/%@%@", [url host], [url path]];
@@ -85,6 +89,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
 }
 
+
+-(RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className{
+
+    id rmViewController = [[NSClassFromString(className) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    if (rmViewController) {
+        NSLog(@"found custom RMViewController subclass called: %@", className);
+        return rmViewController;
+    }
+    else {
+        return [self viewControllerForResourceAtPath:path];
+    }
+}
+
+
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {
     id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
@@ -93,6 +111,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         return viewController;
     }
 
+    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    if (rmViewController) {
+        NSLog(@"found custom RMViewController subclass");
+        return rmViewController;
+    }
+    
+    
     return [[RMViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
 }
 
