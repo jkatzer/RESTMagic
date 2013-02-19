@@ -44,7 +44,7 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 411)];
+    rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     rmWebView.scalesPageToFit=YES;
@@ -73,11 +73,19 @@
 {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"];
+    if ([[apiManager settings] objectForKey:@"TemplateBaseURL"]) {
+        //TODO: make asynchronous
+        NSURL *templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
+        NSLog(@"%@",[templateURL absoluteString]);
+        return [NSString stringWithContentsOfURL:templateURL  encoding:kCFStringEncodingUTF8 error:nil];
+    } else {
+        NSString *filePath = [NSString stringWithFormat:@"templates%@", [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"]];
+        
+        NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
+        return [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
+    }
     
-    NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
-    return [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
-    
+    return @"";
 }
 
 -(void)objectDidLoad

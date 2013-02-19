@@ -31,6 +31,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return self;
 }
 
+-(NSDictionary*)settings {
+    return settings;
+}
+
 -(NSString *)nameForResourceAtPath:(NSString *)path
 {
     return [path componentsSeparatedByString:@"/"][0];
@@ -68,13 +72,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         
         NSString *pathAfterId = [[lastPartOfPath componentsSeparatedByString:@"."] lastObject];
         if ([lastPartOfPath length] > 1) {
-            return [NSString stringWithFormat:@"templates/%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
+            return [NSString stringWithFormat:@"%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
         } else {
-            return [NSString stringWithFormat:@"templates/%@%@/id", [url host], pathBeforeId];
+            return [NSString stringWithFormat:@"%@%@/id", [url host], pathBeforeId];
         }
     }
     
-    return [NSString stringWithFormat:@"templates/%@%@", [url host], [url path]];
+    return [NSString stringWithFormat:@"%@%@", [url host], [url path]];
 }
 
 
@@ -139,7 +143,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
 }
 
--(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController{
+-(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController shouldFlushAllViews:(BOOL)shouldFlushAllViews{
+    
     
     // look for native controller
     // make a new view controller
@@ -149,13 +154,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
     if ([self canOpenURL:URL]) {
         RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:URL];
-        
-        [navigationController pushViewController:aViewController animated:YES];
+        if (shouldFlushAllViews) {
+            [navigationController setViewControllers:@[aViewController]];
+        } else {
+            [navigationController pushViewController:aViewController animated:YES];
+        }
     } else {
         [[UIApplication sharedApplication] openURL:URL];
     }
     
-    
+}
+
+
+-(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController{
+    [self openURL:URL withNavigationController:navigationController shouldFlushAllViews:NO];
 }
 
 

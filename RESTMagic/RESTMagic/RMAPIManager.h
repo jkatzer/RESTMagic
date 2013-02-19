@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSURL* baseURL;
 
 +(RMAPIManager *)sharedAPIManager;
+-(NSDictionary*)settings;
 -(NSString *)nameForResourceAtPath:(NSString *)path;
 -(NSString *)nameForResourceAtURL:(NSURL *)url;
 -(NSURL *)URLForResourceAtPath:(NSString *)path;
@@ -30,5 +31,5 @@
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className;
 -(BOOL)canOpenURL:(NSURL *)url;
 -(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController;
-
+-(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController shouldFlushAllViews:(BOOL)shouldFlushAllViews;
 @end
