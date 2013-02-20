@@ -88,9 +88,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     return [NSString stringWithFormat:@"%@%@ViewController",[settings objectForKey:@"ProjectClassPrefix"],resourceName];
 }
 
+-(NSString*) apiPathFromFullPath:(NSString *)fullPath {
+    NSURL* fullURL = [NSURL URLWithString:fullPath relativeToURL:baseURL];
+    NSString* path = [[[fullURL absoluteString] lowercaseString] stringByReplacingOccurrencesOfString:[[baseURL absoluteString] lowercaseString] withString:@""];
+    return path;
+}
+
+
 -(NSString *) resourceNameForResourceAtPath:(NSString *)path
 {
-    NSString* resourceName = [self nameForResourceAtPath:path];
+    NSString* resourceName = [self nameForResourceAtPath:[self apiPathFromFullPath:path]];
     return [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[resourceName substringToIndex:1] uppercaseString]];
 }
 
@@ -111,6 +118,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {
     id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    NSLog(@"RMAPIManager: trying view controller: %@",[self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]);
     
     if (viewController) {
         return viewController;

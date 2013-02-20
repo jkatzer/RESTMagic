@@ -46,7 +46,6 @@
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     rmWebView.scalesPageToFit=YES;
-    [rmWebView loadHTMLString:@"LOADING" baseURL:[NSURL URLWithString:@"/"]];
     
     [self.view addSubview:rmWebView];
     
@@ -95,7 +94,6 @@
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     //take over all clicks and send them to the appdelegate to decide what to do with them.
-
     
     if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
         NSString* query = [[request URL] query];
@@ -109,12 +107,16 @@
         return NO;
     }
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    if (navigationType == UIWebViewNavigationTypeReload) {
+        return YES;
+    }
+    
+    if (navigationType != UIWebViewNavigationTypeOther) {
         RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
         [apiManager openURL:request.URL withNavigationController:self.navigationController];
         return NO;
     }
-    
+
     return YES;
 }
 

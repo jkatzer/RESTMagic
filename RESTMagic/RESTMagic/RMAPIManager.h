@@ -24,6 +24,7 @@
 -(NSString *)nameForResourceAtPath:(NSString *)path;
 -(NSString *)nameForResourceAtURL:(NSURL *)url;
 -(NSURL *)URLForResourceAtPath:(NSString *)path;
+-(NSString*) apiPathFromFullPath:(NSString *)fullPath;
 -(NSString *)urlForResourceAtPath:(NSString *)path;
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
