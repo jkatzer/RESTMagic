@@ -106,6 +106,13 @@
     return YES;
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSString* pageTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (pageTitle) {
+        self.title = pageTitle;
+    }
+}
+
 
 -(void)presentTemplate:(NSString *)template withJSONData:(NSData *)jsonData {
     

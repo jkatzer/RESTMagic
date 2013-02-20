@@ -71,10 +71,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         NSString *pathBeforeId = [restOfPath componentsJoinedByString:@"/"];
         
         NSString *pathAfterId = [[lastPartOfPath componentsSeparatedByString:@"."] lastObject];
-        if ([lastPartOfPath length] > 1) {
-            return [NSString stringWithFormat:@"%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
-        } else {
+        //TODO: make this error checking nicer
+        if ([lastPartOfPath isEqualToString:pathAfterId]) {
             return [NSString stringWithFormat:@"%@%@/id", [url host], pathBeforeId];
+        } else {
+            return [NSString stringWithFormat:@"%@%@/id.%@", [url host], pathBeforeId, pathAfterId];
         }
     }
     

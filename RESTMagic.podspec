@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency 'GRMustache',    '~> 3.0.1'
+  s.dependency 'GRMustache',    '~> 6.4.0'
 
 end
