@@ -22,12 +22,31 @@ More to Come
 -----
 If you are interested in this at all just email hey {at} restmagic {dot} org or jkatzer on github and i'll help you out.
 
+Branches
+-----
+master - tested code that is official and the basis of releases. features tags will be in here. cocoapods will come from here.
+
+feature-anythingelse - anything that is not in master is subject to change and crashes.
+
+
 Versions
 ---------
 Here are the future plans
+
+0.0.2 - Work in progress that will be release February: A lot of cool stuff. (easy automatic subclass of RMViewController which i am using to easily have an ECSlidingViewController) and way more ( look at the commits on that branch)
+
+0.0.3 - Work in progress that will be release March
+
+0.0.4 - Work in progress that will be release April (feature lock for 0.1)
+
 0.1 - Proper downloading and caching of templates - (Adding AFNetworking)
+
 0.2 - Clean Ways to override methods and more settings in the plist
+
 0.3 - Update ExampleApp to use a cleaner MVC structure. Add additional examples
+
 0.4 - More Magic
+
 0.5 - Feature freeze for v1.0
+
 1.0 - YOU!!!!!!
