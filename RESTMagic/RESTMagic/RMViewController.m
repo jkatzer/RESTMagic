@@ -97,6 +97,19 @@
     
     //take over all clicks and send them to the appdelegate to decide what to do with them.
 
+    
+    if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
+        NSString* query = [[request URL] query];
+        if ([[query componentsSeparatedByString:@"="] count] > 1) {
+            NSString* jsonToParse = [[query componentsSeparatedByString:@"="][1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            id data = [NSJSONSerialization JSONObjectWithData:[jsonToParse dataUsingEncoding:NSUnicodeStringEncoding] options:nil error:nil];
+            [self handleJavascriptMessage:[[request URL] host] withData:data];
+        } else {
+            [self handleJavascriptMessage:[[request URL] host] withData:nil];
+        }
+        return NO;
+    }
+    
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
         [apiManager openURL:request.URL withNavigationController:self.navigationController];
@@ -160,6 +173,10 @@
     }
 }
 
+
+-(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
+    NSLog(@"recieved from JS message:%@",message);
+}
 
 
 - (void)didReceiveMemoryWarning

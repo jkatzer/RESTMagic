@@ -31,6 +31,7 @@
 -(void)objectDidLoad;
 -(NSString *)template;
 
+-(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
 
 @end
