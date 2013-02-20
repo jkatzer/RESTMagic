@@ -23,7 +23,6 @@
     return [self initWithResourceAtUrl:url withTitle:title andIconNamed:title];
 }
 
-
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName
 {
     self = [super init];
@@ -166,27 +165,19 @@
 
     if (objectToRender) {
         NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
-        
         [rmWebView loadHTMLString:rendering baseURL:URL];
     } else {
         [rmWebView loadHTMLString:template baseURL:URL];
     }
 }
 
-
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
     NSLog(@"recieved from JS message:%@",message);
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

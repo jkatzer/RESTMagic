@@ -14,24 +14,16 @@
 
 @implementation RMTableViewController
 
--(id)initWithResourceAtUrl:(NSString *)url {
-    
+-(id)initWithResourceAtUrl:(NSString *)url
+{
     //this is bad code
     objectName = [url componentsSeparatedByString:@"/"][0];
-    
     return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
-    
-    
-    
-    
 }
 
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
 {
-    
     return [self initWithResourceAtUrl:url withTitle:title andIconNamed:title];
-    
-    
 }
 
 
