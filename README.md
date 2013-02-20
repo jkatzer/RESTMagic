@@ -26,8 +26,13 @@ Versions
 ---------
 Here are the future plans
 0.1 - Proper downloading and caching of templates - (Adding AFNetworking)
+
 0.2 - Clean Ways to override methods and more settings in the plist
+
 0.3 - Update ExampleApp to use a cleaner MVC structure. Add additional examples
+
 0.4 - More Magic
+
 0.5 - Feature freeze for v1.0
+
 1.0 - YOU!!!!!!
