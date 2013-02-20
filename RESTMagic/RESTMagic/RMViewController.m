@@ -58,11 +58,26 @@
 {
     //make asynchronous
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    NSURLResponse* response = nil;
+    NSHTTPURLResponse* response = nil;
     NSError *err = nil;
 
     objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    [self objectDidLoad];
+    NSString* contentTypeKey = @"";
+    NSString* contentType = @"application/json";
+    for (NSString* key in [[response allHeaderFields] allKeys]) {
+        if ([[key lowercaseString] isEqualToString:@"content-type"]) {
+            contentTypeKey = key;
+        }
+    }
+    if (contentTypeKey) {
+        contentType = [[response allHeaderFields] objectForKey:contentTypeKey];
+    }
+    if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
+        NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
+        [rmWebView loadHTMLString:htmlString baseURL:URL];
+    } else {
+        [self objectDidLoad];
+    }
 }
 
 
@@ -121,6 +136,8 @@
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
+    [webView.scrollView setContentSize: CGSizeMake(webView.frame.size.width, webView.scrollView.contentSize.height)];
+
     NSString* pageTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if (pageTitle) {
         self.title = pageTitle;
