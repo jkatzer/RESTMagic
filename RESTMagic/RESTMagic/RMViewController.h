@@ -26,7 +26,7 @@
 -(void)objectDidLoad;
 -(void)displayAuth;
 -(NSString *)template;
-
+-(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL;
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
 -(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController;

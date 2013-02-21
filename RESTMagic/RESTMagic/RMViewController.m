@@ -112,6 +112,16 @@
     [self presentTemplate:[self template] withJSONData:objectData];
 }
 
+-(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL{
+    NSString* query = [cocoaURL query];
+    if ([[query componentsSeparatedByString:@"="] count] > 1) {
+        NSString* jsonToParse = [[query componentsSeparatedByString:@"="][1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        id data = [NSJSONSerialization JSONObjectWithData:[jsonToParse dataUsingEncoding:NSUnicodeStringEncoding] options:nil error:nil];
+        [self handleJavascriptMessage:[cocoaURL host] withData:data];
+    } else {
+        [self handleJavascriptMessage:[cocoaURL host] withData:nil];
+    }
+}
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
@@ -119,14 +129,7 @@
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
     if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
-        NSString* query = [[request URL] query];
-        if ([[query componentsSeparatedByString:@"="] count] > 1) {
-            NSString* jsonToParse = [[query componentsSeparatedByString:@"="][1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            id data = [NSJSONSerialization JSONObjectWithData:[jsonToParse dataUsingEncoding:NSUnicodeStringEncoding] options:nil error:nil];
-            [self handleJavascriptMessage:[[request URL] host] withData:data];
-        } else {
-            [self handleJavascriptMessage:[[request URL] host] withData:nil];
-        }
+        [self handleCocoaMessageFromURL:[request URL]];
         return NO;
     }
     
