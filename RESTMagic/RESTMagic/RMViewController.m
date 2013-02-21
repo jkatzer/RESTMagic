@@ -62,29 +62,32 @@
 {
     //TODO: handle empty responses
     //TODO: handle error responses
-    //TODO: make asynchronous
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     NSHTTPURLResponse* response = nil;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSError *err = nil;
 
-    objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    
-    NSString* contentTypeKey = @"";
-    NSString* contentType = @"application/json";
-    for (NSString* key in [[response allHeaderFields] allKeys]) {
-        if ([[key lowercaseString] isEqualToString:@"content-type"]) {
-            contentTypeKey = key;
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        objectData = data;
+        
+        NSString* contentTypeKey = @"";
+        NSString* contentType = @"application/json";
+        for (NSString* key in [[(NSHTTPURLResponse*)response allHeaderFields] allKeys]) {
+            if ([[key lowercaseString] isEqualToString:@"content-type"]) {
+                contentTypeKey = key;
+            }
         }
-    }
-    if (contentTypeKey) {
-        contentType = [[response allHeaderFields] objectForKey:contentTypeKey];
-    }
-    if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
-        NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
-        [rmWebView loadHTMLString:htmlString baseURL:URL];
-    } else {
-        [self objectDidLoad];
-    }
+        if (contentTypeKey) {
+            contentType = [[(NSHTTPURLResponse*)response allHeaderFields] objectForKey:contentTypeKey];
+        }
+        if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
+            NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
+            [rmWebView loadHTMLString:htmlString baseURL:URL];
+        } else {
+            [self objectDidLoad];
+        }
+
+    }];
 }
 
 
