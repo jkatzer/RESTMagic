@@ -155,6 +155,11 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //TODO: move this kind of stuff into either the RMWebView class, or if its not for everyone, into the RMViewcontroller subclass
+    [rmWebView.scrollView setContentSize: CGSizeMake(rmWebView.frame.size.width, rmWebView.scrollView.contentSize.height)];
+}
 
 -(void)presentTemplate:(NSString *)template withJSONData:(NSData *)jsonData {
     
