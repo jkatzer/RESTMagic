@@ -204,6 +204,7 @@
 
 -(void)reloadData {
     //TODO:handle reloading data and stuff. in this case after presenting auth
+    [self loadObject];
 }
 
 
@@ -233,5 +234,6 @@
 {
     [super didReceiveMemoryWarning];
 }
+
 
 @end
