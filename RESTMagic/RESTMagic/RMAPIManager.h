@@ -10,8 +10,6 @@
 #import "RMViewController.h"
 #import "RMAuthViewController.h"
 
-@class RMViewController;
-
 @interface RMAPIManager : NSObject
 {
     NSURL* baseURL;
@@ -28,7 +26,7 @@
 -(NSString*) apiPathFromFullPath:(NSString *)fullPath;
 -(NSString *)urlForResourceAtPath:(NSString *)path;
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url;
--(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path;
+-(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path withPreviousViewController:(UIViewController*)previousController;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
 -(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className;

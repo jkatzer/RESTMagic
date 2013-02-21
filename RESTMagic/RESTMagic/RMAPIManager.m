@@ -102,22 +102,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 }
 
 
--(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path{
-    id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+-(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path withPreviousViewController:(UIViewController*)previousController{
+    id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
     NSLog(@"RMAPIManager: trying auth view controller: %@",[self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]);
     
     if (viewController) {
         return viewController;
     }
     
-    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
     if (rmViewController) {
         NSLog(@"found custom RMAuthViewController subclass");
         return rmViewController;
     }
     
     
-    return [[RMAuthViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    return [[RMAuthViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
 }
 
 
@@ -179,10 +179,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     // make a new view controller
     // pass it to a navigation controller?
     
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
     if ([self canOpenURL:URL]) {
-        RMViewController *aViewController = [apiManager viewControllerForResourceAtURL:URL];
+        RMViewController *aViewController = [self viewControllerForResourceAtURL:URL];
         if (shouldFlushAllViews) {
             [navigationController setViewControllers:@[aViewController]];
         } else {

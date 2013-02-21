@@ -9,6 +9,11 @@
 #import "RMViewController.h"
 #import "RMWebViewDelegate.h"
 
-@interface RMAuthViewController : RMViewController <RMWebViewDelegate>
+@interface RMAuthViewController : RMViewController <RMWebViewDelegate>{
+    UIViewController* previousViewController;
+}
+
+
+-(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title withPreviousViewController:(UIViewController*)previousController;
 
 @end

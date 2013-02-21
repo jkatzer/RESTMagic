@@ -7,6 +7,7 @@
 //
 
 #import "RMViewController.h"
+#import "RMAPIManager.h"
 #import "GRMustache.h"
 
 @implementation RMViewController
@@ -59,12 +60,15 @@
 
 -(void)loadObject
 {
-    //make asynchronous
+    //TODO: handle empty responses
+    //TODO: handle error responses
+    //TODO: make asynchronous
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     NSHTTPURLResponse* response = nil;
     NSError *err = nil;
 
     objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    
     NSString* contentTypeKey = @"";
     NSString* contentType = @"application/json";
     for (NSString* key in [[response allHeaderFields] allKeys]) {
@@ -112,6 +116,7 @@
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     //take over all clicks and send them to the appdelegate to decide what to do with them.
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
     if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
         NSString* query = [[request URL] query];
@@ -198,12 +203,18 @@
     //TODO:handle reloading data and stuff. in this case after presenting auth
 }
 
+
+-(void)displayAuth{
+    [self displayAuthWithData:nil fromViewController:self];
+}
+
 -(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    UINavigationController *authNavigationController = [UINavigationController alloc];
     if ([[apiManager settings] objectForKey:@"loginUrl"]) {
-        [self presentModalViewController:[apiManager authViewControllerForResourceAtPath:[[apiManager settings] objectForKey:@"loginUrl"]] animated:YES];
+        [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:[[apiManager settings] objectForKey:@"loginUrl"] withPreviousViewController:self.navigationController]] animated:YES];
     } else {
-        [self presentModalViewController:[apiManager authViewControllerForResourceAtPath:@"login"] animated:YES];
+        [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:@"login" withPreviousViewController:self.navigationController]] animated:YES];
     }
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMAPIManager.h"
 #import "RMWebView.h"
 #import "RMWebViewDelegate.h"
 
@@ -25,6 +24,7 @@
 
 -(void)loadObject;
 -(void)objectDidLoad;
+-(void)displayAuth;
 -(NSString *)template;
 
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
