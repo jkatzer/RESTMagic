@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RMViewController.h"
+#import "RMAuthViewController.h"
 
 @class RMViewController;
 
@@ -27,6 +28,7 @@
 -(NSString*) apiPathFromFullPath:(NSString *)fullPath;
 -(NSString *)urlForResourceAtPath:(NSString *)path;
 -(NSString *)templateUrlForResourceAtUrl:(NSURL *)url;
+-(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
 -(RMViewController *)viewControllerForResourceAtURL:(NSURL *)url;
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className;

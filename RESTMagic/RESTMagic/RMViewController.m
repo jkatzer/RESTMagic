@@ -46,6 +46,9 @@
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     rmWebView.scalesPageToFit=YES;
+
+    //TODO: figure out why this doesn't work
+    [[rmWebView scrollView] setScrollsToTop:YES];
     
     [self.view addSubview:rmWebView];
     
@@ -190,8 +193,26 @@
     }
 }
 
+
+-(void)reloadData {
+    //TODO:handle reloading data and stuff. in this case after presenting auth
+}
+
+-(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController {
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    if ([[apiManager settings] objectForKey:@"loginUrl"]) {
+        [self presentModalViewController:[apiManager authViewControllerForResourceAtPath:[[apiManager settings] objectForKey:@"loginUrl"]] animated:YES];
+    } else {
+        [self presentModalViewController:[apiManager authViewControllerForResourceAtPath:@"login"] animated:YES];
+    }
+}
+
+
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
     NSLog(@"recieved from JS message:%@",message);
+    if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
+        [self displayAuthWithData:data fromViewController:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning

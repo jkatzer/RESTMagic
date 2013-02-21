@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMAPIManager.h"
 #import "RMWebView.h"
 #import "RMWebViewDelegate.h"
-#import "RMAPIManager.h"
 
 
 @interface RMViewController : UIViewController <RMWebViewDelegate> {
@@ -29,5 +29,5 @@
 
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
-
+-(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController;
 @end

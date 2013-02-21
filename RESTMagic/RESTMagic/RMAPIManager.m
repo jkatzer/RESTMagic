@@ -102,6 +102,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 }
 
 
+-(RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path{
+    id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    NSLog(@"RMAPIManager: trying auth view controller: %@",[self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]);
+    
+    if (viewController) {
+        return viewController;
+    }
+    
+    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    if (rmViewController) {
+        NSLog(@"found custom RMAuthViewController subclass");
+        return rmViewController;
+    }
+    
+    
+    return [[RMAuthViewController alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+}
+
+
+
 -(RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className{
 
     id rmViewController = [[NSClassFromString(className) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
