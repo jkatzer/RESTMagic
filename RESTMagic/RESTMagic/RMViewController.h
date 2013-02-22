@@ -16,6 +16,8 @@
     NSURL *URL;
     NSData *objectData;
     NSString *objectName;
+    NSString *template;
+    id objectToRender;
 }
 
 -(id)initWithResourceAtUrl:(NSString *)url;
@@ -23,9 +25,9 @@
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
 
 -(void)loadObject;
+-(void)loadTemplate;
 -(void)objectDidLoad;
 -(void)displayAuth;
--(NSString *)template;
 -(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL;
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;

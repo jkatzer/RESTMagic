@@ -63,9 +63,7 @@
     //TODO: handle empty responses
     //TODO: handle error responses
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    NSHTTPURLResponse* response = nil;
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    NSError *err = nil;
 
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         objectData = data;
@@ -91,28 +89,47 @@
 }
 
 
--(NSString *)template
+-(void)loadTemplate
 {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    NSURL* templateURL;
     
     if ([[apiManager settings] objectForKey:@"TemplateBaseURL"]) {
         //TODO: make asynchronous
-        NSURL *templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
+        templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
         NSLog(@"%@",[templateURL absoluteString]);
-        return [NSString stringWithContentsOfURL:templateURL  encoding:kCFStringEncodingUTF8 error:nil];
     } else {
         NSString *filePath = [NSString stringWithFormat:@"templates%@", [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"]];
-        
         NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
-        return [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
+        template = [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
+        [self templateDidLoad];
     }
     
-    return @"";
+    if (templateURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:templateURL];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            template = [[NSString alloc] initWithData:data encoding:kCFStringEncodingUTF8];
+            [self templateDidLoad];
+        }];
+    }
 }
+
+-(void)templateDidLoad{
+    if (objectToRender) {
+        NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
+        [rmWebView loadHTMLString:rendering baseURL:URL];
+    } else {
+        [rmWebView loadHTMLString:template baseURL:URL];
+    }
+}
+
+
 
 -(void)objectDidLoad
 {
-    [self presentTemplate:[self template] withJSONData:objectData];
+    [self presentTemplate:template withJSONData:objectData];
 }
 
 -(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL{
@@ -174,7 +191,7 @@
     // 3. result is an array but not mapped in a dictionary of results
     // if it is none of these just pass the json right to the template
     id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
-    id objectToRender = object;
+    objectToRender = object;
 
 
     if ([(NSDictionary *)object respondsToSelector:@selector(objectForKey:)]) {
@@ -188,7 +205,7 @@
             }
         }
     }
-    
+
      else {
          //handle case #2
         if ([object isKindOfClass:[NSArray class]]) {
@@ -201,12 +218,7 @@
         }
     }
 
-    if (objectToRender) {
-        NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
-        [rmWebView loadHTMLString:rendering baseURL:URL];
-    } else {
-        [rmWebView loadHTMLString:template baseURL:URL];
-    }
+    [self loadTemplate];
 }
 
 
