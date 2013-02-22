@@ -97,10 +97,10 @@
     if ([[apiManager settings] objectForKey:@"TemplateBaseURL"]) {
         //TODO: make asynchronous
         templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
-        NSLog(@"%@",[templateURL absoluteString]);
+        NSLog(@"RMViewcontroller: templateURL: %@",[templateURL absoluteString]);
     } else {
         NSString *filePath = [NSString stringWithFormat:@"templates%@", [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"]];
-        NSLog(@"%@",[apiManager templateUrlForResourceAtUrl:URL]);
+        NSLog(@"RMViewcontroller: templateURL: %@",[apiManager templateUrlForResourceAtUrl:URL]);
         template = [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
         [self templateDidLoad];
     }
@@ -254,7 +254,7 @@
 
 
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
-    NSLog(@"recieved from JS message:%@",message);
+    NSLog(@"RMViewcontroller: recieved JS message:%@",message);
     if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
         [self displayAuthWithData:data fromViewController:self];
     }

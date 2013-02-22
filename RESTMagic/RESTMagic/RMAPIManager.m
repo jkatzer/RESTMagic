@@ -112,7 +112,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
     id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
     if (rmViewController) {
-        NSLog(@"found custom RMAuthViewController subclass");
+        NSLog(@"RMAPIManager: found custom RMAuthViewController subclass");
         return rmViewController;
     }
     
@@ -126,7 +126,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
     id rmViewController = [[NSClassFromString(className) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     if (rmViewController) {
-        NSLog(@"found custom RMViewController subclass called: %@", className);
+        NSLog(@"RMAPIManager: found custom RMViewController subclass called: %@", className);
         return rmViewController;
     }
     else {
@@ -146,7 +146,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
     id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicViewController",[settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     if (rmViewController) {
-        NSLog(@"found custom RMViewController subclass");
+        NSLog(@"RMAPIManager: found custom RMViewController subclass");
         return rmViewController;
     }
     

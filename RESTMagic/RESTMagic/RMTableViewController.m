@@ -104,7 +104,6 @@
 {
     // Return the number of rows in the section.
     if (objectDict) {
-        NSLog(@"rowcount: %i", [objectArray count]);
         return [objectArray count];
     }
     
