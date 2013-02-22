@@ -129,6 +129,10 @@
 
 -(void)objectDidLoad
 {
+    
+    //TODO: add some way to check data before rendering it, such as for messages from the server. make this as easily subclassable method
+    
+    
     [self presentTemplate:template withJSONData:objectData];
 }
 
@@ -181,7 +185,7 @@
     [rmWebView.scrollView setContentSize: CGSizeMake(rmWebView.frame.size.width, rmWebView.scrollView.contentSize.height)];
 }
 
--(void)presentTemplate:(NSString *)template withJSONData:(NSData *)jsonData {
+-(void)presentTemplate:(NSString *)templateString withJSONData:(NSData *)jsonData {
     
     //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
     
@@ -217,8 +221,14 @@
             }
         }
     }
-
-    [self loadTemplate];
+    if (templateString) {
+        template = templateString;
+    }
+    if (template){
+        [self templateDidLoad];
+    } else {
+        [self loadTemplate];
+    }
 }
 
 
@@ -250,10 +260,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 
 @end
