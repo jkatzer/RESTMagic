@@ -2,15 +2,15 @@
 //  RMViewController.m
 //  RESTMagic
 //
-//  Created by Jason Katzer on 7/1/12.
-//  Copyright (c) 2012 Jason Katzer. All rights reserved.
-//
 
 #import "RMViewController.h"
 #import "RMAPIManager.h"
 #import "GRMustache.h"
 
 @implementation RMViewController
+
+
+#pragma mark init methods
 
 -(id)initWithResourceAtUrl:(NSString *)url {
     //this is bad code
@@ -40,8 +40,11 @@
 
 }
 
+
+#pragma mark viewController methods
 - (void)loadView
 {
+    //TODO: make this set automatically based on whats on the screen
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
@@ -56,7 +59,13 @@
     [self loadObject];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //TODO: move this kind of stuff into either the RMWebView class, or if its not for everyone, into the RMViewcontroller subclass
+    [rmWebView.scrollView setContentSize: CGSizeMake(rmWebView.frame.size.width, rmWebView.scrollView.contentSize.height)];
+}
 
+#pragma mark data and template loading methods
 
 -(void)loadObject
 {
@@ -116,16 +125,9 @@
     }
 }
 
--(void)templateDidLoad{
-    if (objectToRender) {
-        NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
-        [rmWebView loadHTMLString:rendering baseURL:URL];
-    } else {
-        [rmWebView loadHTMLString:template baseURL:URL];
-    }
+-(void)reloadData {
+    [self loadObject];
 }
-
-
 
 -(void)objectDidLoad
 {
@@ -136,17 +138,63 @@
     [self presentTemplate:template withJSONData:objectData];
 }
 
--(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL{
-    NSString* query = [cocoaURL query];
-    if ([[query componentsSeparatedByString:@"="] count] > 1) {
-        NSString* jsonToParse = [[query componentsSeparatedByString:@"="][1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        id data = [NSJSONSerialization JSONObjectWithData:[jsonToParse dataUsingEncoding:NSUnicodeStringEncoding] options:nil error:nil];
-        [self handleJavascriptMessage:[cocoaURL host] withData:data];
+-(void)templateDidLoad{
+    if (objectToRender) {
+        NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
+        [rmWebView loadHTMLString:rendering baseURL:URL];
     } else {
-        [self handleJavascriptMessage:[cocoaURL host] withData:nil];
+        [rmWebView loadHTMLString:template baseURL:URL];
     }
 }
 
+-(void)presentTemplate:(NSString *)templateString withJSONData:(NSData *)jsonData {
+    
+    //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
+    
+    //handle a couple different cases automagically
+    // 1. result is a dictionary named for the object
+    // 2. result is an array with one item, a dictionary in it
+    // 3. result is an array but not mapped in a dictionary of results
+    // if it is none of these just pass the json right to the template
+    id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
+    objectToRender = object;
+    
+    
+    if ([(NSDictionary *)object respondsToSelector:@selector(objectForKey:)]) {
+        //handle case #1
+        NSDictionary *dictToRender = [object objectForKey:objectName];
+        if (dictToRender != nil) {
+            if ([dictToRender isKindOfClass:[NSDictionary class]]) {
+                NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
+                objectToRender = @{objectName: arrayToRender};
+                
+            }
+        }
+    }
+    
+    else {
+        //handle case #2
+        if ([object isKindOfClass:[NSArray class]]) {
+            if ([(NSArray *) object count] == 0) {
+                objectToRender = [(NSArray *)object objectAtIndex:0];
+            } else {
+                //handle case #3
+                objectToRender = [NSDictionary dictionaryWithObject:object forKey:@"results"];
+            }
+        }
+    }
+    if (templateString) {
+        template = templateString;
+    }
+    if (template){
+        [self templateDidLoad];
+    } else {
+        [self loadTemplate];
+    }
+}
+
+
+#pragma mark UIWebViewDelegate methods
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     //take over all clicks and send them to the appdelegate to decide what to do with them.
@@ -179,64 +227,37 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //TODO: move this kind of stuff into either the RMWebView class, or if its not for everyone, into the RMViewcontroller subclass
-    [rmWebView.scrollView setContentSize: CGSizeMake(rmWebView.frame.size.width, rmWebView.scrollView.contentSize.height)];
-}
+#pragma mark javascript bridge
 
--(void)presentTemplate:(NSString *)templateString withJSONData:(NSData *)jsonData {
-    
-    //the point here is that someone can subclass to use a different templating engine, since new templating engines come out everyday on hackernews and github
-    
-    //handle a couple different cases automagically
-    // 1. result is a dictionary named for the object
-    // 2. result is an array with one item, a dictionary in it
-    // 3. result is an array but not mapped in a dictionary of results
-    // if it is none of these just pass the json right to the template
-    id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
-    objectToRender = object;
-
-
-    if ([(NSDictionary *)object respondsToSelector:@selector(objectForKey:)]) {
-        //handle case #1
-        NSDictionary *dictToRender = [object objectForKey:objectName];
-        if (dictToRender != nil) {
-            if ([dictToRender isKindOfClass:[NSDictionary class]]) {
-                NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
-                objectToRender = @{objectName: arrayToRender};
-                
-            }
-        }
-    }
-
-     else {
-         //handle case #2
-        if ([object isKindOfClass:[NSArray class]]) {
-            if ([(NSArray *) object count] == 0) {
-                objectToRender = [(NSArray *)object objectAtIndex:0];
-            } else {
-                //handle case #3
-                objectToRender = [NSDictionary dictionaryWithObject:object forKey:@"results"];
-            }
-        }
-    }
-    if (templateString) {
-        template = templateString;
-    }
-    if (template){
-        [self templateDidLoad];
+-(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL{
+    NSString* query = [cocoaURL query];
+    if ([[query componentsSeparatedByString:@"="] count] > 1) {
+        NSString* jsonToParse = [[query componentsSeparatedByString:@"="][1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        id data = [NSJSONSerialization JSONObjectWithData:[jsonToParse dataUsingEncoding:NSUnicodeStringEncoding] options:nil error:nil];
+        [self handleJavascriptMessage:[cocoaURL host] withData:data];
     } else {
-        [self loadTemplate];
+        [self handleJavascriptMessage:[cocoaURL host] withData:nil];
     }
 }
 
-
--(void)reloadData {
-    //TODO:handle reloading data and stuff. in this case after presenting auth
-    [self loadObject];
+-(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
+    NSLog(@"RMViewcontroller: recieved JS message:%@",message);
+    if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
+        [self displayAuthWithData:data fromViewController:self];
+    }
+    if ([[message lowercaseString] isEqualToString:@"popviewcontroller"]) {
+        [self popViewController];
+    }
+    
 }
 
+-(void)popViewController{
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[self parentViewController] dismissModalViewControllerAnimated:YES];
+    }
+}
 
 -(void)displayAuth{
     [self displayAuthWithData:nil fromViewController:self];
@@ -251,27 +272,6 @@
         [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:@"login" withPreviousViewController:self.navigationController]] animated:YES];
     }
 }
-
-
--(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
-    NSLog(@"RMViewcontroller: recieved JS message:%@",message);
-    if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
-        [self displayAuthWithData:data fromViewController:self];
-    }
-    if ([[message lowercaseString] isEqualToString:@"popviewcontroller"]) {
-        [self popViewController];
-    }
-
-}
-
--(void)popViewController{
-    if (self.navigationController) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        [[self parentViewController] dismissModalViewControllerAnimated:YES];
-    }
-}
-
 
 
 @end
