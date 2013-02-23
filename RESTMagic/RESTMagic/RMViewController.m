@@ -258,6 +258,18 @@
     if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
         [self displayAuthWithData:data fromViewController:self];
     }
+    if ([[message lowercaseString] isEqualToString:@"popviewcontroller"]) {
+        [self popViewController];
+    }
+
+}
+
+-(void)popViewController{
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[self parentViewController] dismissModalViewControllerAnimated:YES];
+    }
 }
 
 

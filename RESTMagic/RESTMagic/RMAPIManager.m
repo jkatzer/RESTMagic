@@ -64,7 +64,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     
     NSString *potentialId = [[lastPartOfPath componentsSeparatedByString:@"."] objectAtIndex:0];
     
-    if ([potentialId intValue] != 0) {
+    if ([potentialId intValue] || [potentialId isEqualToString:@"0"]) {
         NSMutableArray *restOfPath = [NSMutableArray arrayWithArray:[[url path]componentsSeparatedByString:@"/"]];
         [restOfPath removeLastObject];
         
