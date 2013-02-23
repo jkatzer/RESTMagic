@@ -223,7 +223,7 @@
 
     NSString* pageTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if ([pageTitle length]) {
-        self.title = pageTitle;
+        self.title = [pageTitle stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
 
 }
