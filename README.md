@@ -33,7 +33,7 @@ Versions
 ---------
 Here are the future plans
 
-0.0.2 - Work in progress that will be release February: A lot of cool stuff. (easy automatic subclass of RMViewController which i am using to easily have an ECSlidingViewController) and way more ( look at the commits on that branch)
+0.0.2 - Released!!!: A lot of cool stuff. (easy automatic subclass of RMViewController which i am using to easily have an ECSlidingViewController) and way more. Loads remote templates. If an api response is HTML, it will be presented in lieu of a template. Also there is now an authentication modal view controller that can be presented when the user needs to login. after login reloads the view underneath, or if they hit cancel, pops off the view that requested login.
 
 0.0.3 - Work in progress that will be release March
 
