@@ -61,7 +61,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     //check for parts of the path that are actually unique identifiers
     
     NSString *lastPartOfPath = [[url pathComponents] lastObject];
-    
     NSString *potentialId = [[lastPartOfPath componentsSeparatedByString:@"."] objectAtIndex:0];
     
     if ([potentialId intValue] || [potentialId isEqualToString:@"0"]) {
@@ -69,7 +68,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         [restOfPath removeLastObject];
         
         NSString *pathBeforeId = [restOfPath componentsJoinedByString:@"/"];
-        
         NSString *pathAfterId = [[lastPartOfPath componentsSeparatedByString:@"."] lastObject];
         //TODO: make this error checking nicer
         if ([lastPartOfPath isEqualToString:pathAfterId]) {

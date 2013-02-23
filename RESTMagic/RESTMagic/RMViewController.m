@@ -108,8 +108,8 @@
         templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
         NSLog(@"RMViewcontroller: templateURL: %@",[templateURL absoluteString]);
     } else {
-        NSString *filePath = [NSString stringWithFormat:@"templates%@", [[NSBundle mainBundle] pathForResource:[apiManager templateUrlForResourceAtUrl:URL] ofType:@"html"]];
-        NSLog(@"RMViewcontroller: templateURL: %@",[apiManager templateUrlForResourceAtUrl:URL]);
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"templates/%@", [apiManager templateUrlForResourceAtUrl:URL] ] ofType:@"html"];
+        NSLog(@"RMViewcontroller: templateURL: templates/%@.html",[apiManager templateUrlForResourceAtUrl:URL]);
         template = [NSString stringWithContentsOfFile:filePath encoding:kCFStringEncodingUTF8 error:nil];
         [self templateDidLoad];
     }
@@ -222,9 +222,10 @@
     [webView.scrollView setContentSize: CGSizeMake(webView.frame.size.width, webView.scrollView.contentSize.height)];
 
     NSString* pageTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (pageTitle) {
+    if ([pageTitle length]) {
         self.title = pageTitle;
     }
+
 }
 
 #pragma mark javascript bridge
