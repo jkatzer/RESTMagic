@@ -45,8 +45,13 @@
 - (void)loadView
 {
     //TODO: make this set automatically based on whats on the screen
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    rmWebView = [[RMWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    CGRect viewFrame = [[UIScreen mainScreen] bounds];
+    viewFrame.size.height = viewFrame.size.height -  [UIApplication sharedApplication].statusBarFrame.size.height;
+    if (self.navigationController) {
+        viewFrame.size.height = viewFrame.size.height -  self.navigationController.navigationBar.frame.size.height;
+    }
+    self.view = [[UIView alloc] initWithFrame:viewFrame];
+    rmWebView = [[RMWebView alloc] initWithFrame:viewFrame];
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     rmWebView.scalesPageToFit=YES;
@@ -100,6 +105,7 @@
 
 -(void)loadTemplate
 {
+    
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     NSURL* templateURL;
     
@@ -156,7 +162,7 @@
     // 2. result is an array with one item, a dictionary in it
     // 3. result is an array but not mapped in a dictionary of results
     // if it is none of these just pass the json right to the template
-    id object = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
+    id object = [NSJSONSerialization JSONObjectWithData:objectData options:nil error:nil];
     objectToRender = object;
     
     
@@ -198,7 +204,6 @@
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     //take over all clicks and send them to the appdelegate to decide what to do with them.
-    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     
     if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
         [self handleCocoaMessageFromURL:[request URL]];
@@ -225,7 +230,6 @@
     if ([pageTitle length]) {
         self.title = [pageTitle stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
-
 }
 
 #pragma mark javascript bridge
