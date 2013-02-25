@@ -50,6 +50,9 @@
     if (self.navigationController) {
         viewFrame.size.height = viewFrame.size.height -  self.navigationController.navigationBar.frame.size.height;
     }
+    if (self.tabBarController) {
+        viewFrame.size.height = viewFrame.size.height -  self.tabBarController.tabBar.frame.size.height;
+    }
     self.view = [[UIView alloc] initWithFrame:viewFrame];
     rmWebView = [[RMWebView alloc] initWithFrame:viewFrame];
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
@@ -213,6 +216,12 @@
     if (navigationType == UIWebViewNavigationTypeReload) {
         return YES;
     }
+
+    if (navigationType == UIWebViewNavigationTypeFormSubmitted || navigationType == UIWebViewNavigationTypeFormResubmitted) {
+        if ([[request HTTPMethod] isEqualToString:@"POST"]) {
+            return YES;
+        }
+    }
     
     if (navigationType != UIWebViewNavigationTypeOther) {
         RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
@@ -253,7 +262,22 @@
     if ([[message lowercaseString] isEqualToString:@"popviewcontroller"]) {
         [self popViewController];
     }
-    
+    if ([[message lowercaseString] isEqualToString:@"savesuccess"]) {
+        [self saveSuccess];
+    }
+}
+
+-(void)saveSuccess{
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        for (RMViewController* viewController in self.navigationController.viewControllers) {
+            [viewController reloadData];
+        }
+    } else {
+        [(id)[self parentViewController] reloadData];
+        [[self parentViewController] dismissModalViewControllerAnimated:YES];
+    }
+
 }
 
 -(void)popViewController{

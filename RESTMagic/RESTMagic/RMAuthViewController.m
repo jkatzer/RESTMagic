@@ -15,7 +15,7 @@
 {
     self = [super initWithResourceAtUrl:url withTitle:title andIconNamed:nil];
     if (self) {
-        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModal:)];
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissModal:)];
         self.navigationItem.rightBarButtonItem = anotherButton;
         previousViewController = previousController;
     }
@@ -58,7 +58,10 @@
     
     [previousViewController dismissViewControllerAnimated:YES completion:^{}];
     if ([previousViewController isKindOfClass:[UINavigationController class]]) {
-        [[[(UINavigationController*)previousViewController viewControllers] lastObject] reloadData];
+        id topViewController = [[(UINavigationController*)previousViewController viewControllers] lastObject];
+        if ([topViewController respondsToSelector:@selector(reloadData)]) {
+            [topViewController reloadData];
+        }
     } else {
         if ([previousViewController respondsToSelector:@selector(reloadData)]) {
             [(id)previousViewController reloadData];
