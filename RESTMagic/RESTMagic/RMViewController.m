@@ -6,6 +6,7 @@
 #import "RMViewController.h"
 #import "RMAPIManager.h"
 #import "GRMustache.h"
+#import "DejalActivityView.h"
 
 @implementation RMViewController
 
@@ -58,12 +59,10 @@
     rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
     rmWebView.delegate = self;
     rmWebView.scalesPageToFit=YES;
-
     //TODO: figure out why this doesn't work
-    [[rmWebView scrollView] setScrollsToTop:YES];
-    
+    rmWebView.scrollView.ScrollsToTop=YES;
+
     [self.view addSubview:rmWebView];
-    
     [self loadObject];
 }
 
@@ -77,6 +76,7 @@
 
 -(void)loadObject
 {
+    [DejalBezelActivityView activityViewForView:rmWebView];
     //TODO: handle empty responses
     //TODO: handle error responses
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
@@ -98,6 +98,7 @@
         if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
             NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
             [rmWebView loadHTMLString:htmlString baseURL:URL];
+            [DejalBezelActivityView removeViewAnimated:YES];
         } else {
             [self objectDidLoad];
         }
@@ -154,6 +155,7 @@
     } else {
         [rmWebView loadHTMLString:template baseURL:URL];
     }
+    [DejalBezelActivityView removeViewAnimated:YES];
 }
 
 -(void)presentTemplate:(NSString *)templateString withJSONData:(NSData *)jsonData {
@@ -214,11 +216,13 @@
     }
     
     if (navigationType == UIWebViewNavigationTypeReload) {
+        [DejalBezelActivityView activityViewForView:wv];
         return YES;
     }
 
     if (navigationType == UIWebViewNavigationTypeFormSubmitted || navigationType == UIWebViewNavigationTypeFormResubmitted) {
         if ([[request HTTPMethod] isEqualToString:@"POST"]) {
+            [DejalBezelActivityView activityViewForView:wv];
             return YES;
         }
     }
@@ -228,7 +232,8 @@
         [apiManager openURL:request.URL withNavigationController:self.navigationController];
         return NO;
     }
-
+    
+    [DejalBezelActivityView activityViewForView:wv];
     return YES;
 }
 
@@ -239,6 +244,8 @@
     if ([pageTitle length]) {
         self.title = [pageTitle stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
+    [DejalBezelActivityView removeView];
+
 }
 
 #pragma mark javascript bridge

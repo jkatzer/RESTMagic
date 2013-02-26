@@ -39,6 +39,7 @@
         self.tabBarItem.image = [UIImage imageNamed:iconName];
         
         [self loadObject];
+        self.tableView.scrollsToTop = YES;
     }
     return self;
     
@@ -48,13 +49,13 @@
 
 -(void)loadObject
 {
-    //make asynchronous
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    NSURLResponse* response = nil;
-    NSError *err = nil;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
-    objectData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        objectData = data;
     [self objectDidLoad];
+    }];
 }
 
 
@@ -82,7 +83,6 @@
     
     objectDict = objectToRender;
     objectArray = [objectDict objectForKey:@"results"];
-    
     
     [self.tableView reloadData];
 }
