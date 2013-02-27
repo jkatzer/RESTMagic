@@ -67,8 +67,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    UIView* rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 40)];
-    UILabel* rightSide = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 145, 40)];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    UIView* rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth/2, 40)];
+    UILabel* rightSide = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth/2-5, 40)];
     NSDictionary *object = [[objectDict objectForKey:@"sections"] objectAtIndex:[indexPath section]];
     id rightItem = [[object objectForKey:@"rightItems"] objectAtIndex:[indexPath row]];
     NSString *rightText = [NSString stringWithFormat:@"%@",
