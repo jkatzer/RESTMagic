@@ -142,6 +142,13 @@
     return @"";
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[self tableView:tableView urlForRowAtIndexPath:indexPath] length]!= 0) {
+        return indexPath;
+    }
+    return nil;
+}
+
 - (NSString *)tableView:(UITableView *)tableView textForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"";
 }
