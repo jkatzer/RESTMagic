@@ -64,7 +64,7 @@
 {
     objectDict = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
     
-    NSDictionary *dictToRender = [objectDict objectForKey:objectName];
+    NSDictionary *dictToRender = objectDict[objectName];
     
     NSDictionary* objectToRender;
     
@@ -82,7 +82,7 @@
     
     
     objectDict = objectToRender;
-    objectArray = [objectDict objectForKey:@"results"];
+    objectArray = objectDict[@"results"];
     
     [self.tableView reloadData];
 }

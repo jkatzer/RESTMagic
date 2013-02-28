@@ -6,7 +6,6 @@
 #import "RMViewController.h"
 #import "RMAPIManager.h"
 #import "GRMustache.h"
-#import "DejalActivityView.h"
 
 @implementation RMViewController
 
@@ -76,7 +75,6 @@
 
 -(void)loadObject
 {
-    [DejalBezelActivityView activityViewForView:rmWebView];
     //TODO: handle empty responses
     //TODO: handle error responses
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
@@ -93,12 +91,11 @@
             }
         }
         if (contentTypeKey) {
-            contentType = [[(NSHTTPURLResponse*)response allHeaderFields] objectForKey:contentTypeKey];
+            contentType = [(NSHTTPURLResponse*)response allHeaderFields][contentTypeKey];
         }
         if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
             NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
             [rmWebView loadHTMLString:htmlString baseURL:URL];
-            [DejalBezelActivityView removeViewAnimated:YES];
         } else {
             [self objectDidLoad];
         }
@@ -113,9 +110,9 @@
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     NSURL* templateURL;
     
-    if ([[apiManager settings] objectForKey:@"TemplateBaseURL"]) {
+    if ([apiManager settings][@"TemplateBaseURL"]) {
         //TODO: make asynchronous
-        templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[[apiManager settings] objectForKey:@"TemplateBaseURL"]]];
+        templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[apiManager settings][@"TemplateBaseURL"]]];
         NSLog(@"RMViewcontroller: templateURL: %@",[templateURL absoluteString]);
     } else {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"templates/%@", [apiManager templateUrlForResourceAtUrl:URL] ] ofType:@"html"];
@@ -155,7 +152,6 @@
     } else {
         [rmWebView loadHTMLString:template baseURL:URL];
     }
-    [DejalBezelActivityView removeViewAnimated:YES];
 }
 
 -(void)presentTemplate:(NSString *)templateString withJSONData:(NSData *)jsonData {
@@ -173,7 +169,7 @@
     
     if ([(NSDictionary *)object respondsToSelector:@selector(objectForKey:)]) {
         //handle case #1
-        NSDictionary *dictToRender = [object objectForKey:objectName];
+        NSDictionary *dictToRender = object[objectName];
         if (dictToRender != nil) {
             if ([dictToRender isKindOfClass:[NSDictionary class]]) {
                 NSArray* arrayToRender = [(NSDictionary *)dictToRender allValues][0];
@@ -187,10 +183,10 @@
         //handle case #2
         if ([object isKindOfClass:[NSArray class]]) {
             if ([(NSArray *) object count] == 0) {
-                objectToRender = [(NSArray *)object objectAtIndex:0];
+                objectToRender = ((NSArray *)object)[0];
             } else {
                 //handle case #3
-                objectToRender = [NSDictionary dictionaryWithObject:object forKey:@"results"];
+                objectToRender = @{@"results": object};
             }
         }
     }
@@ -216,13 +212,11 @@
     }
     
     if (navigationType == UIWebViewNavigationTypeReload) {
-        [DejalBezelActivityView activityViewForView:wv];
         return YES;
     }
 
     if (navigationType == UIWebViewNavigationTypeFormSubmitted || navigationType == UIWebViewNavigationTypeFormResubmitted) {
         if ([[request HTTPMethod] isEqualToString:@"POST"]) {
-            [DejalBezelActivityView activityViewForView:wv];
             return YES;
         }
     }
@@ -233,7 +227,6 @@
         return NO;
     }
     
-    [DejalBezelActivityView activityViewForView:wv];
     return YES;
 }
 
@@ -244,7 +237,6 @@
     if ([pageTitle length]) {
         self.title = [pageTitle stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
-    [DejalBezelActivityView removeView];
 
 }
 
@@ -302,8 +294,8 @@
 -(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController {
     RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
     UINavigationController *authNavigationController = [UINavigationController alloc];
-    if ([[apiManager settings] objectForKey:@"loginUrl"]) {
-        [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:[[apiManager settings] objectForKey:@"loginUrl"] withPreviousViewController:self.navigationController]] animated:YES];
+    if ([apiManager settings][@"loginUrl"]) {
+        [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:[apiManager settings][@"loginUrl"] withPreviousViewController:self.navigationController]] animated:YES];
     } else {
         [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:@"login" withPreviousViewController:self.navigationController]] animated:YES];
     }

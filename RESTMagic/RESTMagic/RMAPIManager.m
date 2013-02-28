@@ -15,8 +15,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RESTMagic" ofType:@"plist"];
     _settings = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
-    if ([_settings objectForKey:@"BaseURL"]) {
-        _baseURL = [NSURL URLWithString:[_settings objectForKey:@"BaseURL"]];
+    if (_settings[@"BaseURL"]) {
+        _baseURL = [NSURL URLWithString:_settings[@"BaseURL"]];
     }
     return self;
 }
@@ -47,7 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     //check for parts of the path that are actually unique identifiers
     
     NSString *lastPartOfPath = [[url pathComponents] lastObject];
-    NSString *potentialId = [[lastPartOfPath componentsSeparatedByString:@"."] objectAtIndex:0];
+    NSString *potentialId = [lastPartOfPath componentsSeparatedByString:@"."][0];
     
     if ([potentialId intValue] || [potentialId isEqualToString:@"0"]) {
         NSMutableArray *restOfPath = [NSMutableArray arrayWithArray:[[url path]componentsSeparatedByString:@"/"]];
@@ -69,7 +69,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 -(NSString *) potentialViewControllerNameForResourceNamed:(NSString *)resourceName
 {
-    return [NSString stringWithFormat:@"%@%@ViewController",[_settings objectForKey:@"ProjectClassPrefix"],resourceName];
+    return [NSString stringWithFormat:@"%@%@ViewController",_settings[@"ProjectClassPrefix"],resourceName];
 }
 
 -(NSString*) apiPathFromFullPath:(NSString *)fullPath {
@@ -94,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         return viewController;
     }
     
-    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",[_settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
+    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicAuthViewController",_settings[@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path] withPreviousViewController:previousController];
     if (rmViewController) {
         NSLog(@"RMAPIManager: found custom RMAuthViewController subclass");
         return rmViewController;
@@ -129,7 +129,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
         return viewController;
     }
 
-    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicViewController",[_settings objectForKey:@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    id rmViewController = [[NSClassFromString([NSString stringWithFormat:@"%@RestMagicViewController",_settings[@"ProjectClassPrefix"]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
     if (rmViewController) {
         NSLog(@"RMAPIManager: found custom RMViewController subclass");
         return rmViewController;
