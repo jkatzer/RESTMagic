@@ -167,15 +167,13 @@
         UITableViewCell* cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
         for (UIView* subView in cell.accessoryView.subviews) {
             if ([subView isKindOfClass:[UILabel class]]) {
-                UILabel* label = cell.textLabel;
-                UILabel* label2 = (UILabel *)subView;
-                //TODO: why doesn't this work with label.font
-                CGSize size = [label.text sizeWithFont:label2.font];
-                CGSize size2 = [label2.text sizeWithFont:label2.font];
-                if (size.width > label.bounds.size.width || size2.width > label2.bounds.size.width) {
+                UILabel* label = (UILabel *)subView;
+                CGSize size = [label.text sizeWithFont:label.font];
+                if (size.width > label.bounds.size.width) {
                     NSDictionary *object = objectDict[@"sections"][[indexPath section]];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[object[@"leftItems"][[indexPath row]] stringByReplacingOccurrencesOfString:@":" withString:@""]
-                                                                    message:object[@"rightItems"][[indexPath row]] delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@",
+                                          [object[@"leftItems"][[indexPath row]] stringByReplacingOccurrencesOfString:@":" withString:@""]]
+                        message:[NSString stringWithFormat:@"%@",object[@"rightItems"][[indexPath row]]] delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
                     [alert show];
                 }
 
