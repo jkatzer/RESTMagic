@@ -5,7 +5,7 @@
 
 #import "RMTableViewController.h"
 
-@interface RMListViewController : RMTableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface RMListViewController : RMTableViewController <UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
     NSString* listTitle;
 }
 @end

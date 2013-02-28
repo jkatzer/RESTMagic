@@ -11,7 +11,52 @@
     self.tableView.delegate = self;
     objectDict = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
     [self.tableView reloadData];
+    
+    if ([objectDict objectForKey:@"addButton"]) {
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+        
+        self.navigationItem.rightBarButtonItem = addButton;
+    }
+    
 }
+
+
+-(void)addItem:(id)sender{
+    if (objectDict[@"addButton"]) {
+        RMAPIManager* apiManager = [RMAPIManager sharedAPIManager];
+
+        if ([objectDict[@"addButton"] count] > 1) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add an Item" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+            
+            for (NSDictionary* addItem in objectDict[@"addButton"]) {
+                [actionSheet addButtonWithTitle:addItem[@"title"]];
+            }
+            [actionSheet addButtonWithTitle:@"Cancel"];
+            actionSheet.cancelButtonIndex = [actionSheet numberOfButtons] -1;
+
+            [actionSheet showInView:self.view];
+            
+        } else if ([objectDict[@"addButton"] count] > 0) {
+            
+            [apiManager openURL:[apiManager URLForResourceAtPath:objectDict [@"addButton"][0][@"path"]] withNavigationController:self.navigationController];
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (objectDict[@"addButton"]) {
+        RMAPIManager* apiManager = [RMAPIManager sharedAPIManager];
+        
+        if ([objectDict[@"addButton"] count] >1) {
+            if (buttonIndex < actionSheet.numberOfButtons) {
+                [apiManager openURL:[apiManager URLForResourceAtPath:objectDict [@"addButton"][buttonIndex][@"path"]] withNavigationController:self.navigationController];
+                
+            }
+        }
+    }
+
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style{
     return [super initWithStyle:UITableViewStyleGrouped];
@@ -27,9 +72,6 @@
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.tableView.backgroundView.backgroundColor = [UIColor colorWithRed:214.0/255.0 green:219.0/255.0 blue:228.0/255.0 alpha:1.0f];
     self.title = listTitle;
-    //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPerson:)];
-    
-    //    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 

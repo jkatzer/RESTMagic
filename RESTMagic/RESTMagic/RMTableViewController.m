@@ -87,6 +87,10 @@
     [self.tableView reloadData];
 }
 
+-(void)reloadData{
+    [self loadObject];
+}
+
 
 #pragma mark - Table view data source
 
