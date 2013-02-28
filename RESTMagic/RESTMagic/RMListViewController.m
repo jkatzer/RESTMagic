@@ -48,7 +48,7 @@
         RMAPIManager* apiManager = [RMAPIManager sharedAPIManager];
         
         if ([objectDict[@"addButton"] count] >1) {
-            if (buttonIndex < actionSheet.numberOfButtons) {
+            if (buttonIndex < actionSheet.numberOfButtons -1) {
                 [apiManager openURL:[apiManager URLForResourceAtPath:objectDict [@"addButton"][buttonIndex][@"path"]] withNavigationController:self.navigationController];
                 
             }
@@ -152,4 +152,39 @@
     return @"";
     
 }
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
+    
+    NSString * url = [self tableView:tableView urlForRowAtIndexPath:indexPath];
+    if ([url length] != 0) {
+        [apiManager openURL:[NSURL URLWithString:url] withNavigationController:self.navigationController];
+    } else{
+        UITableViewCell* cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+        for (UIView* subView in cell.accessoryView.subviews) {
+            if ([subView isKindOfClass:[UILabel class]]) {
+                UILabel* label = (UILabel *)subView;
+                CGSize size = [label.text sizeWithFont:label.font];
+                if (size.width > label.bounds.size.width) {
+                    NSDictionary *object = objectDict[@"sections"][[indexPath section]];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[object[@"leftItems"][[indexPath row]] stringByReplacingOccurrencesOfString:@":" withString:@""]
+                                                                    message:object[@"rightItems"][[indexPath row]] delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                    [alert show];
+                }
+
+            }
+        }
+        
+        
+        
+    }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 @end

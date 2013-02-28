@@ -140,6 +140,7 @@
         [apiManager openURL:[NSURL URLWithString:url] withNavigationController:self.navigationController];
     }
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView urlForRowAtIndexPath:(NSIndexPath *)indexPath {
