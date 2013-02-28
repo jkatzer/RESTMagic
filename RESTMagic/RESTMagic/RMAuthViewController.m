@@ -55,7 +55,9 @@
 
 -(void)loginSuccess:(id)sender{
     //TODO: figure out why this won't close while its still "loading"
-    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+
+    [center postNotificationName:@"RMLoginSuccess" object:self];
     [previousViewController dismissViewControllerAnimated:YES completion:^{}];
     if ([previousViewController isKindOfClass:[UINavigationController class]]) {
         id topViewController = [[(UINavigationController*)previousViewController viewControllers] lastObject];

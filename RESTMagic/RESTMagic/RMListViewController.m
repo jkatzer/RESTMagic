@@ -119,7 +119,7 @@
     if ([rightText length] != 0 && rightItem) {
         rightSide.text = [NSString stringWithFormat:@"%@", [[object objectForKey:@"rightItems"] objectAtIndex:[indexPath row]]];
     }
-    rightSide.backgroundColor = [UIColor colorWithRed:0.968 green:0.968 blue:0.968 alpha:1.0];
+    rightSide.backgroundColor = [UIColor groupTableViewBackgroundColor];
     rightSide.textAlignment = NSTextAlignmentRight;
     [rightView addSubview:rightSide];
     cell.accessoryView = rightView;

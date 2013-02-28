@@ -8,10 +8,6 @@
 
 #import "RMTableViewController.h"
 
-@interface RMTableViewController ()
-
-@end
-
 @implementation RMTableViewController
 
 -(id)initWithResourceAtUrl:(NSString *)url
