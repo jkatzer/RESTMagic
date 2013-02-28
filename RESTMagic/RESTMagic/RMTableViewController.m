@@ -37,7 +37,8 @@
         objectName = title;
         self.title = title;
         self.tabBarItem.image = [UIImage imageNamed:iconName];
-        
+        NSLog(@"iconNamed: %@", iconName);
+
         [self loadObject];
         self.tableView.scrollsToTop = YES;
     }
