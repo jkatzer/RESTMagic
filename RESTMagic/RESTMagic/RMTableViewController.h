@@ -17,7 +17,7 @@
     NSURL *URL;
     NSData *objectData;
     NSString *objectName;
-    NSDictionary *objectDict;
+    NSMutableDictionary *objectDict;
     NSArray *objectArray;
     
 }

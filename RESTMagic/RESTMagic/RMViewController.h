@@ -29,7 +29,9 @@
 -(void)reloadData;
 
 -(void)objectDidLoad;
+-(void)objectDidNotLoad;
 -(void)templateDidLoad;
+-(void)templateDidNotLoad;
 -(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
 
 //decode and handle messages from javascript

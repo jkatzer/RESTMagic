@@ -31,12 +31,12 @@
         URL = [NSURL URLWithString:url];
         //make this another incoming param
         objectName = title;
-        self.title = title;
-        self.tabBarItem.image = [UIImage imageNamed:iconName];
-        NSLog(@"iconNamed: %@", iconName);
+        self.title = [title capitalizedString];
+        self.tabBarItem.image = [UIImage imageNamed:[iconName lowercaseString]];
+        NSLog(@"iconNamed: %@", [iconName lowercaseString]);
 
         [self loadObject];
-        self.tableView.scrollsToTop = YES;
+//        self.tableView.scrollsToTop = YES;
     }
     return self;
     
@@ -87,7 +87,6 @@
 -(void)reloadData{
     [self loadObject];
 }
-
 
 #pragma mark - Table view data source
 

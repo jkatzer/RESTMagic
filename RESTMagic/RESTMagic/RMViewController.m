@@ -96,6 +96,7 @@
         if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
             NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
             [rmWebView loadHTMLString:htmlString baseURL:URL];
+            [self objectDidNotLoad];
         } else {
             [self objectDidLoad];
         }
@@ -103,6 +104,9 @@
     }];
 }
 
+-(void)objectDidNotLoad{
+    NSLog(@"object did not load");
+}
 
 -(void)loadTemplate
 {
@@ -254,7 +258,7 @@
 }
 
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
-    NSLog(@"RMViewcontroller: recieved JS message:%@",message);
+    NSLog(@"RMViewcontroller: recieved JS message:%@",message);    
     if ([[message lowercaseString] isEqualToString:@"displayauth"]) {
         [self displayAuthWithData:data fromViewController:self];
     }
@@ -300,6 +304,5 @@
         [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:@"login" withPreviousViewController:self.navigationController]] animated:YES];
     }
 }
-
 
 @end
