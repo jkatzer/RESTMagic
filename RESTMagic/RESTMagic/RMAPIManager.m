@@ -181,5 +181,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
     [self openURL:URL withNavigationController:navigationController shouldFlushAllViews:NO];
 }
 
+-(void)showErrorHtml:(NSString*)html withNavController:(UINavigationController*)navigationController {
+    
+    [navigationController pushViewController:
+     [[RMViewController alloc] initWithHtmlString:html]  animated:YES];
+    
+}
+
+-(void)handleError:(NSError*)error fromViewController:(UIViewController*)viewController{
+    
+    if ([viewController respondsToSelector:@selector(showError:)]) {
+        [(id)viewController showError:error];
+    }
+
+}
+
 
 @end

@@ -22,6 +22,7 @@
 -(id)initWithResourceAtUrl:(NSString *)url;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
 -(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
+-(id)initWithHtmlString:(NSString*)html;
 
 //methods that deal with loading data and the template
 -(void)loadObject;

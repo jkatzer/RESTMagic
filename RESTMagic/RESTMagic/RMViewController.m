@@ -40,6 +40,20 @@
 
 }
 
+-(id)initWithHtmlString:(NSString*)html{
+    self = [super init];
+    if (self) {
+        
+        URL = nil;
+        //make this another incoming param
+        objectName = @"";
+        self.title = @"";
+        self.tabBarItem.image = [UIImage imageNamed:@""];
+        template = html;
+    }
+    return self;
+
+}
 
 #pragma mark viewController methods
 - (void)loadView
@@ -62,7 +76,12 @@
     rmWebView.scrollView.ScrollsToTop=YES;
 
     [self.view addSubview:rmWebView];
-    [self loadObject];
+    if (URL) {
+        [self loadObject];
+    } else if (template) {
+        [rmWebView loadHTMLString:template baseURL:[[RMAPIManager sharedAPIManager] baseURL]];
+    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -81,6 +100,11 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        if (error) {
+            [[RMAPIManager sharedAPIManager] handleError:error fromViewController:self];
+            [self objectDidNotLoad];
+        } else {
+        
         objectData = data;
         
         NSString* contentTypeKey = @"";
@@ -100,7 +124,7 @@
         } else {
             [self objectDidLoad];
         }
-
+        }
     }];
 }
 
@@ -147,6 +171,10 @@
     
     
     [self presentTemplate:template withJSONData:objectData];
+}
+
+-(void)showError:(NSError*)error{
+    
 }
 
 -(void)templateDidLoad{

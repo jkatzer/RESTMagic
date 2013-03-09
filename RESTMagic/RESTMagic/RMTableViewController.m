@@ -50,7 +50,12 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        if (error) {
+            [[RMAPIManager sharedAPIManager] handleError:error fromViewController:self];
+            [self objectDidNotLoad];
+        } else {
         objectData = data;
+        }
     [self objectDidLoad];
     }];
 }
@@ -78,14 +83,22 @@
 
     
     
-    objectDict = objectToRender;
+    objectDict = [objectToRender copy];
     objectArray = objectDict[@"results"];
     
     [self.tableView reloadData];
 }
 
+-(void)objectDidNotLoad{
+    NSLog(@"object did not load");
+}
+
 -(void)reloadData{
     [self loadObject];
+}
+
+-(void)showError:(NSError*)error{
+    
 }
 
 #pragma mark - Table view data source
