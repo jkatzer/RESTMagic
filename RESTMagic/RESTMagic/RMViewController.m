@@ -32,7 +32,7 @@
         URL = [NSURL URLWithString:url];
         //make this another incoming param
         objectName = title;
-        self.title = title;
+        self.title = [title capitalizedString];
         self.tabBarItem.image = [UIImage imageNamed:iconName];
         
     }

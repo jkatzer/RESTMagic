@@ -23,6 +23,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 -(NSString *)nameForResourceAtPath:(NSString *)path
 {
+    if ([path hasPrefix:@"http://"] || [path hasPrefix:@"https://"]) {
+        path = [self apiPathFromFullPath:path];
+    }
     return [path componentsSeparatedByString:@"/"][0];
 }
 

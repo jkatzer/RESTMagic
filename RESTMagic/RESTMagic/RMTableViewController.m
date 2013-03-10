@@ -86,7 +86,7 @@
     objectDict = [objectToRender copy];
     objectArray = objectDict[@"results"];
     
-    [self.tableView reloadData];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 -(void)objectDidNotLoad{
@@ -135,7 +135,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    cell.textLabel.text = [self tableView:tableView textForRowAtIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[self tableView:tableView textForRowAtIndexPath:indexPath]];
     
     return cell;
 }
