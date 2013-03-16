@@ -77,7 +77,7 @@
 
     [self.view addSubview:rmWebView];
     if (URL) {
-        [self loadObject];
+        [self performSelectorInBackground:@selector(loadObject) withObject:nil];
     } else if (template) {
         [rmWebView loadHTMLString:template baseURL:[[RMAPIManager sharedAPIManager] baseURL]];
     }
@@ -119,10 +119,10 @@
         }
         if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
             NSString *htmlString = [[NSString alloc] initWithData:objectData encoding:kCFStringEncodingUTF8];
-            [rmWebView loadHTMLString:htmlString baseURL:URL];
-            [self objectDidNotLoad];
+            [self performSelectorOnMainThread:@selector(loadHTMLString:) withObject:htmlString waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(objectDidNotLoad) withObject:nil waitUntilDone:NO];
         } else {
-            [self objectDidLoad];
+            [self performSelectorOnMainThread:@selector(objectDidLoad) withObject:nil waitUntilDone:NO];
         }
         }
     }];
@@ -177,12 +177,17 @@
     
 }
 
+-(void)loadHTMLString:(NSString*)html {
+    [rmWebView loadHTMLString:html baseURL:URL];
+}
+
+
 -(void)templateDidLoad{
     if (objectToRender) {
         NSString *rendering = [GRMustacheTemplate renderObject:objectToRender fromString:template error:NULL];
-        [rmWebView loadHTMLString:rendering baseURL:URL];
+        [self performSelectorOnMainThread:@selector(loadHTMLString:) withObject:rendering waitUntilDone:NO];
     } else {
-        [rmWebView loadHTMLString:template baseURL:URL];
+        [self performSelectorOnMainThread:@selector(loadHTMLString:) withObject:template waitUntilDone:NO];
     }
 }
 
@@ -332,5 +337,6 @@
         [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager authViewControllerForResourceAtPath:@"login" withPreviousViewController:self.navigationController]] animated:YES];
     }
 }
+
 
 @end

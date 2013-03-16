@@ -15,7 +15,7 @@
     if ([objectDict objectForKey:@"addButton"]) {
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
         
-        self.navigationItem.rightBarButtonItem = addButton;
+        [self.navigationItem performSelectorOnMainThread:@selector(setRightBarButtonItem:) withObject:addButton waitUntilDone:NO];
     }
     
 }
