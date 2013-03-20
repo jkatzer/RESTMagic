@@ -12,10 +12,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 - (id)init
 {
-  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RESTMagic"
-                                                       ofType:@"plist"];
+  self = [super init];
+  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"RESTMagic" ofType:@"plist"];
   _settings = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-
   if (_settings[@"BaseURL"]) {
     _baseURL = [NSURL URLWithString:_settings[@"BaseURL"]];
   }
