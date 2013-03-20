@@ -44,7 +44,7 @@
 - (void)popViewController;
 - (void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController;
 
-
+//error methods
 - (void)showError:(NSError*)error;
 
 
