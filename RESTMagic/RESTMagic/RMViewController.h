@@ -9,12 +9,12 @@
 
 
 @interface RMViewController : UIViewController <RMWebViewDelegate> {
-    RMWebView *rmWebView;
-    NSURL *URL;
-    NSData *objectData;
-    NSString *objectName;
-    NSString *template;
-    id objectToRender;
+  RMWebView *rmWebView;
+  NSURL *URL;
+  NSData *objectData;
+  NSString *objectName;
+  NSString *template;
+  id objectToRender;
 }
 
 
