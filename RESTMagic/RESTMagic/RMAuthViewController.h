@@ -14,8 +14,8 @@
 }
 
 
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title withPreviousViewController:(UIViewController*)previousController;
--(void)loginSuccess:(id)sender;
--(void)dismissModal:(id)sender;
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title withPreviousViewController:(UIViewController*)previousController;
+- (void)loginSuccess:(id)sender;
+- (void)dismissModal:(id)sender;
 
 @end

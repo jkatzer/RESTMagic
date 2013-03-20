@@ -10,20 +10,20 @@
 
 @implementation RMTableViewController
 
--(id)initWithResourceAtUrl:(NSString *)url
+- (id)initWithResourceAtUrl:(NSString *)url
 {
     //this is bad code
     objectName = [url componentsSeparatedByString:@"/"][0];
     return [self initWithResourceAtUrl:url withTitle:objectName andIconNamed:objectName];
 }
 
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title
 {
     return [self initWithResourceAtUrl:url withTitle:title andIconNamed:title];
 }
 
 
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName
 {
     self = [super init];
     if (self) {
@@ -44,7 +44,7 @@
 
 
 
--(void)loadObject
+- (void)loadObject
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -62,7 +62,7 @@
 
 
 
--(void)objectDidLoad
+- (void)objectDidLoad
 {
     objectDict = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
     
@@ -89,15 +89,15 @@
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
--(void)objectDidNotLoad{
+- (void)objectDidNotLoad{
     NSLog(@"object did not load");
 }
 
--(void)reloadData{
+- (void)reloadData{
     [self loadObject];
 }
 
--(void)showError:(NSError*)error{
+- (void)showError:(NSError*)error{
     
 }
 

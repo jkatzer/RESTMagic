@@ -19,33 +19,33 @@
 
 
 //init methods
--(id)initWithResourceAtUrl:(NSString *)url;
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
--(id)initWithHtmlString:(NSString*)html;
+- (id)initWithResourceAtUrl:(NSString *)url;
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title;
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title andIconNamed:(NSString *)iconName;
+- (id)initWithHtmlString:(NSString*)html;
 
 //methods that deal with loading data and the template
--(void)loadObject;
--(void)loadTemplate;
--(void)reloadData;
+- (void)loadObject;
+- (void)loadTemplate;
+- (void)reloadData;
 
--(void)objectDidLoad;
--(void)objectDidNotLoad;
--(void)templateDidLoad;
--(void)templateDidNotLoad;
--(void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
+- (void)objectDidLoad;
+- (void)objectDidNotLoad;
+- (void)templateDidLoad;
+- (void)templateDidNotLoad;
+- (void)presentTemplate:(NSString *)url withJSONData:(NSData *)jsonData;
 
 //decode and handle messages from javascript
--(void)handleCocoaMessageFromURL:(NSURL*)cocoaURL;
--(void)handleJavascriptMessage:(NSString *)message withData:(id)data;
+- (void)handleCocoaMessageFromURL:(NSURL*)cocoaURL;
+- (void)handleJavascriptMessage:(NSString *)message withData:(id)data;
 
 //Native methods that get called from JavaScript
--(void)displayAuth;
--(void)popViewController;
--(void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController;
+- (void)displayAuth;
+- (void)popViewController;
+- (void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController;
 
 
--(void)showError:(NSError*)error;
+- (void)showError:(NSError*)error;
 
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation RMAuthViewController
 
--(id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title withPreviousViewController:(UIViewController*)previousController
+- (id)initWithResourceAtUrl:(NSString *)url withTitle:(NSString *)title withPreviousViewController:(UIViewController*)previousController
 {
     self = [super initWithResourceAtUrl:url withTitle:title andIconNamed:nil];
     if (self) {
@@ -23,7 +23,7 @@
     
 }
 
--(void)dismissModal:(id)sender{
+- (void)dismissModal:(id)sender{
     //TODO:check what happens when navigationcontroller has only one view
     [previousViewController dismissViewControllerAnimated:YES completion:^{}];
     if ([previousViewController isKindOfClass:[UINavigationController class]]) {
@@ -44,7 +44,7 @@
 }
 
 
--(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
+- (void)handleJavascriptMessage:(NSString *)message withData:(id)data {
     [super handleJavascriptMessage:message withData:data];
     if ([[message lowercaseString] isEqualToString:@"loginsuccess"]) {
         [self loginSuccess:nil];
@@ -52,7 +52,7 @@
 }
 
 
--(void)loginSuccess:(id)sender{
+- (void)loginSuccess:(id)sender{
     //TODO: figure out why this won't close while its still "loading"
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 

@@ -6,7 +6,7 @@
 
 @implementation RMListViewController
 
--(void)objectDidLoad{
+- (void)objectDidLoad{
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     objectDict = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:nil];
@@ -21,7 +21,7 @@
 }
 
 
--(void)addItem:(id)sender{
+- (void)addItem:(id)sender{
     if (objectDict[@"addButton"]) {
         RMAPIManager* apiManager = [RMAPIManager sharedAPIManager];
 
@@ -62,7 +62,7 @@
     return [super initWithStyle:UITableViewStyleGrouped];
 }
 
--(void)loadView{
+- (void)loadView{
     [super loadView];
     listTitle = @"List";
 }
