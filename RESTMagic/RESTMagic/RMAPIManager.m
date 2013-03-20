@@ -199,5 +199,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 }
 
+-(NSURLCacheStoragePolicy)cachePolicy{
+    if (_settings[@"cachePolicy"]) {
+        return [_settings[@"cachePolicy"] intValue];
+    } else {
+        return NSURLRequestUseProtocolCachePolicy;
+    }
+}
+
 
 @end

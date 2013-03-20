@@ -96,7 +96,7 @@
 {
     //TODO: handle empty responses
     //TODO: handle error responses
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:[[RMAPIManager sharedAPIManager] cachePolicy] timeoutInterval:60];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
@@ -150,7 +150,7 @@
     }
     
     if (templateURL) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:templateURL];
+        NSURLRequest *request = [NSURLRequest requestWithURL:templateURL cachePolicy:[[RMAPIManager sharedAPIManager] cachePolicy] timeoutInterval:60];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){

@@ -29,5 +29,5 @@
 -(void)openURL:(NSURL *)URL withNavigationController:(UINavigationController*) navigationController shouldFlushAllViews:(BOOL)shouldFlushAllViews;
 -(void)showErrorHtml:(NSString*)html withNavController:(UINavigationController*) navigationController;
 -(void)handleError:(NSError*)error fromViewController:(UIViewController*)viewController;
-
+-(NSURLCacheStoragePolicy)cachePolicy;
 @end

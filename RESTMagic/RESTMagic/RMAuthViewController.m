@@ -37,7 +37,6 @@
     if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
         [self handleCocoaMessageFromURL:[request URL]];
         //TODO: remove this next line so that it gets executed from handleJavascriptMessage   
-        [self loginSuccess:nil];
         return NO;
     }
 
@@ -47,7 +46,7 @@
 
 -(void)handleJavascriptMessage:(NSString *)message withData:(id)data {
     [super handleJavascriptMessage:message withData:data];
-    if ([[message lowercaseString] isEqualToString:@"loginSuccess"]) {
+    if ([[message lowercaseString] isEqualToString:@"loginsuccess"]) {
         [self loginSuccess:nil];
     }
 }
