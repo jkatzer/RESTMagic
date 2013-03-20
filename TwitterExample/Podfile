@@ -1,2 +1,2 @@
 platform :ios, '5.0'
-pod 'RESTMagic'
+pod 'RESTMagic', '~> 0.0.3'

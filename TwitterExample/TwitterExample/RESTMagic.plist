@@ -6,6 +6,10 @@
 	<string>TW</string>
 	<key>BaseURL</key>
 	<string>https://api.twitter.com/1/</string>
+	<key>allowedHosts</key>
+	<array>
+		<string>search.twitter.com</string>
+	</array>
 	<key>RMShouldOpenExternalLinks</key>
 	<false/>
 </dict>
