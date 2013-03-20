@@ -149,9 +149,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 
 -(BOOL)canOpenURL:(NSURL *)url {    
-    if ([[url host] isEqualToString:[_baseURL host]] || [[url host] isEqualToString:@"search.twitter.com"])
+    if ([[url host] isEqualToString:[_baseURL host]])
     {
         return YES;
+    } else if (_settings[@"allowedHosts"])  {
+        for (NSString* host in _settings[@"allowedHosts"]) {
+            if ([[[url host] lowercaseString] isEqualToString:[host lowercaseString]]) {
+                return YES;
+            }
+        }
     }
     
     return NO;
