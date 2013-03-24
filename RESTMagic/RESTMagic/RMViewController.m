@@ -75,7 +75,7 @@
 
   [self.view addSubview:rmWebView];
   if (URL) {
-    [self performSelectorInBackground:@selector(loadObject) withObject:nil];
+    [self loadObject];
   } else if (template) {
     [rmWebView loadHTMLString:template baseURL:[[RMAPIManager sharedAPIManager] baseURL]];
   }

@@ -29,9 +29,12 @@
       self.title = [title capitalizedString];
       self.tabBarItem.image = [UIImage imageNamed:[iconName lowercaseString]];
       NSLog(@"iconNamed: %@", [iconName lowercaseString]);
-      [self loadObject];
   }
   return self;
+}
+
+-(void)viewDidLoad{
+  [self loadObject];
 }
 
 - (void)loadObject
