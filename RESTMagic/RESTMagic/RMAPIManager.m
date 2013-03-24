@@ -5,10 +5,18 @@
 
 
 #import "RMAPIManager.h"
-#import "SynthesizeSingleton.h"
 
 @implementation RMAPIManager
-SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager)
+
++ (RMAPIManager *)sharedAPIManager {
+  static RMAPIManager *_shared = nil;
+  static dispatch_once_t oncePredicate;
+  dispatch_once(&oncePredicate, ^{
+    _shared = [[self alloc] init];
+  });
+
+  return _shared;
+}
 
 - (id)init
 {
