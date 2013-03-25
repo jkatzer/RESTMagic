@@ -117,7 +117,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
   CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
   UIView* rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth/2, 40)];
   UILabel* rightSide = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth/2-5, 40)];
@@ -125,13 +125,29 @@
   id rightItem = [[object objectForKey:@"rightItems"] objectAtIndex:[indexPath row]];
   NSString *rightText = [NSString stringWithFormat:@"%@",
                          rightItem];
+  NSString *CellIdentifier = @"CellCenter";
+
+  if ([rightText length] != 0 && rightItem) {
+     CellIdentifier = @"CellRight";
+  }
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+
+  cell.textLabel.text = [NSString stringWithFormat:@"%@",
+                         [self tableView:tableView textForRowAtIndexPath:indexPath]];
   if ([rightText length] != 0 && rightItem) {
     rightSide.text = [NSString stringWithFormat:@"%@", [[object objectForKey:@"rightItems"] objectAtIndex:[indexPath row]]];
+    rightSide.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    rightSide.textAlignment = NSTextAlignmentRight;
+    [rightView addSubview:rightSide];
+    cell.accessoryView = rightView;
+  } else {
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
   }
-  rightSide.backgroundColor = [UIColor groupTableViewBackgroundColor];
-  rightSide.textAlignment = NSTextAlignmentRight;
-  [rightView addSubview:rightSide];
-  cell.accessoryView = rightView;
 
   return cell;
 }

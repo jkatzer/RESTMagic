@@ -12,9 +12,8 @@
 @property (nonatomic, retain) NSURL* baseURL;
 @property (nonatomic, retain, readonly) NSDictionary* settings;
 
-//Singleton Method
-+ (RMAPIManager *)sharedAPIManager;
 
++ (RMAPIManager *)sharedAPIManager;
 
 //Lazy naming methods
 - (NSString *)nameForResourceAtPath:(NSString *)path;

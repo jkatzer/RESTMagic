@@ -90,14 +90,12 @@
   return path;
 }
 
-
 - (NSString *) resourceNameForResourceAtPath:(NSString *)path
 {
   NSString* resourceName = [self nameForResourceAtPath:[self apiPathFromFullPath:path]];
   return [resourceName stringByReplacingCharactersInRange:NSMakeRange(0,1)
                                                withString:[[resourceName substringToIndex:1] uppercaseString]];
 }
-
 
 - (RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path withPreviousViewController:(UIViewController*)previousController{
   NSString* potentialViewControllerName = [self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]];
@@ -123,14 +121,11 @@
     return rmViewController;
   }
 
-
   return [[RMAuthViewController alloc]
           initWithResourceAtUrl:[self urlForResourceAtPath:path]
           withTitle:[self nameForResourceAtPath:path]
           withPreviousViewController:previousController];
 }
-
-
 
 - (RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className{
 
