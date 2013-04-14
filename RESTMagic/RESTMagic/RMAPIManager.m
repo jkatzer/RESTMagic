@@ -3,6 +3,8 @@
 //  RESTMagic
 //
 
+//TODO: check if template should be id to see if class should be called ObjectDetail
+//TODO: handle 401 error
 
 #import "RMAPIManager.h"
 #import "SynthesizeSingleton.h"
@@ -48,11 +50,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 - (NSString *)templateUrlForResourceAtUrl:(NSURL *)url
 {
   //check for parts of the path that are actually unique identifiers
+  //TODO: how to handle mongodb style ids
 
   NSString *lastPartOfPath = [[url pathComponents] lastObject];
   NSString *potentialId = [lastPartOfPath componentsSeparatedByString:@"."][0];
 
-  if ([potentialId intValue] || [potentialId isEqualToString:@"0"]) {
+  if ([potentialId intValue] || [potentialId isEqualToString:@"0"] || [potentialId rangeOfString:@"_"].location != NSNotFound) {
     NSMutableArray *restOfPath = [NSMutableArray arrayWithArray:[[url path]componentsSeparatedByString:@"/"]];
     [restOfPath removeLastObject];
 
@@ -141,10 +144,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 
 - (RMViewController *)viewControllerForResourceAtPath:(NSString *)path
 {
+  NSURL *url = [self URLForResourceAtPath:path];
+  NSString *lastPartOfPath = [[url pathComponents] lastObject];
+  NSString *potentialId = [lastPartOfPath componentsSeparatedByString:@"."][0];
 
-  id viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+
+  //TODO: this is a temporary fix
+  id viewController;
+  if ([potentialId intValue] || [potentialId isEqualToString:@"0"] || [potentialId rangeOfString:@"_"].location != NSNotFound) {
+    viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[NSString stringWithFormat:@"%@Detail",[self resourceNameForResourceAtPath:path]]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
+    NSLog(@"RMAPIManager: trying view controller: %@",[self potentialViewControllerNameForResourceNamed:[NSString stringWithFormat:@"%@Detail",[self resourceNameForResourceAtPath:path]]]);
+  } else {
+    viewController = [[NSClassFromString([self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]) alloc] initWithResourceAtUrl:[self urlForResourceAtPath:path] withTitle:[self nameForResourceAtPath:path]];
   NSLog(@"RMAPIManager: trying view controller: %@",[self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]]);
-
+  }
   if (viewController) {
     return viewController;
   }

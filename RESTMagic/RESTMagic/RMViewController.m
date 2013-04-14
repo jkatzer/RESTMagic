@@ -4,8 +4,8 @@
 //
 
 #import "RMViewController.h"
-#import "RMAPIManager.h"
 #import "GRMustache.h"
+#import "RMAPIManager.h"
 
 @implementation RMViewController
 
@@ -148,6 +148,7 @@
     templateURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@.html",[apiManager templateUrlForResourceAtUrl:URL]] relativeToURL:[NSURL URLWithString:[apiManager settings][@"TemplateBaseURL"]]];
   } else {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"templates/%@", [apiManager templateUrlForResourceAtUrl:URL] ] ofType:@"html"];
+    NSLog(@"templates/%@", [apiManager templateUrlForResourceAtUrl:URL]);
     template = [NSString stringWithContentsOfFile:filePath
                                          encoding:kCFStringEncodingUTF8
                                             error:nil];
