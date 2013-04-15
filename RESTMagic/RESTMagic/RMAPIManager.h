@@ -38,6 +38,7 @@
 
 //Methods that return a uiviewcontroller subclass
 - (RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path withPreviousViewController:(UIViewController*)previousController;
+- (RMAuthViewController *)authViewControllerForResourceAtUrl:(NSString *)url withPreviousViewController:(UIViewController*)previousController;
 - (RMViewController *)viewControllerForResourceAtPath:(NSString *)path;
 - (RMViewController *)viewControllerForResourceAtURL:(NSURL *)url;
 - (RMViewController *)viewControllerForResourceAtPath:(NSString *)path withClassNamed:(NSString*)className;

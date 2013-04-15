@@ -58,13 +58,16 @@
 {
   //TODO: make this set automatically based on whats on the screen
   CGRect viewFrame = [[UIScreen mainScreen] bounds];
-  viewFrame.size.height = viewFrame.size.height -  [UIApplication sharedApplication].statusBarFrame.size.height;
-  if (self.navigationController) {
-    viewFrame.size.height = viewFrame.size.height -  self.navigationController.navigationBar.frame.size.height;
-  }
-  if (self.tabBarController) {
-    viewFrame.size.height = viewFrame.size.height -  self.tabBarController.tabBar.frame.size.height;
-  }
+  //TODO: this next line causes crashes on iPad UISplitViewController
+  //    viewFrame.size.height = viewFrame.size.height -  [UIApplication sharedApplication].statusBarFrame.size.height;
+    if (self.navigationController) {
+      viewFrame.size.width = self.navigationController.navigationBar.frame.size.width;
+      viewFrame.size.height = viewFrame.size.height -  self.navigationController.navigationBar.frame.size.height;
+    }
+    if (self.tabBarController) {
+      viewFrame.size.width = self.tabBarController.tabBar.frame.size.width;
+      viewFrame.size.height = viewFrame.size.height -  self.tabBarController.tabBar.frame.size.height;
+    }
   self.view = [[UIView alloc] initWithFrame:viewFrame];
   rmWebView = [[RMWebView alloc] initWithFrame:viewFrame];
   rmWebView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(44, 0, 0, 0);
@@ -98,7 +101,14 @@
   NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
   [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+    NSHTTPURLResponse* theResponse = (NSHTTPURLResponse*)response;
     if (error) {
+      NSLog(@"http status code: %i", [theResponse statusCode]);
+      if ([theResponse statusCode] == 401) {
+        [self displayAuth];
+      }
+      //TODO: pass repsonse and data along since it may contain an html page to show, or a json response to parse
+      NSLog(@"the error: %@", error);
       [[RMAPIManager sharedAPIManager] handleError:error fromViewController:self];
       [self objectDidNotLoad];
     } else {
@@ -107,13 +117,13 @@
 
       NSString* contentTypeKey = @"";
       NSString* contentType = @"application/json";
-      for (NSString* key in [[(NSHTTPURLResponse*)response allHeaderFields] allKeys]) {
+      for (NSString* key in [[theResponse allHeaderFields] allKeys]) {
         if ([[key lowercaseString] isEqualToString:@"content-type"]) {
           contentTypeKey = key;
         }
       }
       if (contentTypeKey) {
-        contentType = [(NSHTTPURLResponse*)response allHeaderFields][contentTypeKey];
+        contentType = [theResponse allHeaderFields][contentTypeKey];
       }
       if ([[[contentType lowercaseString] componentsSeparatedByString:@";"][0] isEqualToString:@"text/html"]) {
         NSString *htmlString = [[NSString alloc] initWithData:objectData
@@ -349,9 +359,9 @@
 - (void)displayAuthWithData:(id)data fromViewController:(RMViewController *)viewController {
   RMAPIManager *apiManager = [RMAPIManager sharedAPIManager];
   UINavigationController *authNavigationController = [UINavigationController alloc];
-  if ([apiManager settings][@"loginUrl"]) {
+  if ([apiManager settings][@"LoginURL"]) {
     [self presentModalViewController:[authNavigationController initWithRootViewController:[apiManager
-                    authViewControllerForResourceAtPath:[apiManager settings][@"loginUrl"]
+                    authViewControllerForResourceAtUrl:[apiManager settings][@"LoginURL"]
                              withPreviousViewController:self.navigationController]]
                             animated:YES];
   } else {
@@ -360,6 +370,8 @@
               withPreviousViewController:self.navigationController]]
                         animated:YES];
   }
+
+  //TODO: check for path and use path instead
 }
 
 

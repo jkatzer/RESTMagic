@@ -47,5 +47,4 @@
 //error methods
 - (void)showError:(NSError*)error;
 
-
 @end

@@ -94,6 +94,40 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 }
 
 
+- (RMAuthViewController *)authViewControllerForResourceAtUrl:(NSString *)url withPreviousViewController:(UIViewController*)previousController{
+//TODO: fix this to find the right path for the url
+  NSString* potentialViewControllerName = [self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:@"login"]];
+  id viewController = [[NSClassFromString(potentialViewControllerName) alloc]
+                       initWithResourceAtUrl:url
+                       withTitle:[self nameForResourceAtPath:@"login"]
+                       withPreviousViewController:previousController];
+  NSLog(@"RMAPIManager: trying auth view controller: %@",potentialViewControllerName);
+
+  if (viewController) {
+    return viewController;
+  }
+
+  potentialViewControllerName = [NSString stringWithFormat:@"%@RestMagicAuthViewController",
+                                 _settings[@"ProjectClassPrefix"]];
+  id rmViewController = [[NSClassFromString(potentialViewControllerName) alloc]
+                         initWithResourceAtUrl:url
+                         withTitle:[self nameForResourceAtPath:@"login"]
+                         withPreviousViewController:previousController];
+
+  if (rmViewController) {
+    NSLog(@"RMAPIManager: found custom RMAuthViewController subclass");
+    return rmViewController;
+  }
+
+
+  return [[RMAuthViewController alloc]
+          initWithResourceAtUrl:url
+          withTitle:[self nameForResourceAtPath:@"login"]
+          withPreviousViewController:previousController];
+}
+
+
+
 - (RMAuthViewController *)authViewControllerForResourceAtPath:(NSString *)path withPreviousViewController:(UIViewController*)previousController{
   NSString* potentialViewControllerName = [self potentialViewControllerNameForResourceNamed:[self resourceNameForResourceAtPath:path]];
   id viewController = [[NSClassFromString(potentialViewControllerName) alloc]
@@ -226,8 +260,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_CUSTOM_METHOD(RMAPIManager, sharedAPIManager
 }
 
 - (void)handleError:(NSError*)error fromViewController:(UIViewController*)viewController{
+  if ([error code] == -1012) {
+    if ([viewController respondsToSelector:@selector(displayAuth)]) {
+      [(id)viewController performSelectorOnMainThread:@selector(displayAuth) withObject:nil waitUntilDone:NO];
+    }
+  }
   if ([viewController respondsToSelector:@selector(showError:)]) {
-    [(id)viewController showError:error];
+    [(id)viewController performSelectorOnMainThread:@selector(showError:) withObject:error waitUntilDone:NO];
   }
 }
 
