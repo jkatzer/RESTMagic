@@ -32,6 +32,15 @@
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
   //take over all clicks and keep them in this view for now
+
+  NSString *loginSuccessUrl = [[RMAPIManager sharedAPIManager] settings][@"LoginSuccessURL"];
+  if (loginSuccessUrl) {
+    if ([[[request URL] absoluteString] isEqualToString:loginSuccessUrl]){
+      [self loginSuccess:nil];
+      return NO;
+    }
+  }
+  
   if ([[[request URL] scheme] isEqualToString:@"cocoa"]) {
     [self handleCocoaMessageFromURL:[request URL]];
     return NO;
