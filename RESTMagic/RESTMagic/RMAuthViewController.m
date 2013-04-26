@@ -23,7 +23,6 @@
 }
 
 - (void)dismissModal:(id)sender{
-  //TODO:check what happens when navigationcontroller has only one view
   [previousViewController dismissViewControllerAnimated:YES completion:^{}];
   if ([previousViewController isKindOfClass:[UINavigationController class]]) {
     [(UINavigationController *)previousViewController popViewControllerAnimated:YES];
